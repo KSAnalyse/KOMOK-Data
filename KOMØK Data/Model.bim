@@ -1,0 +1,531 @@
+{
+  "name": "SemanticModel",
+  "compatibilityLevel": 1400,
+  "model": {
+    "culture": "nb-NO",
+    "dataSources": [
+      {
+        "type": "structured",
+        "name": "SQL/vk-sxd0e-003;TEST_Reporting_KOMOK",
+        "connectionDetails": {
+          "protocol": "tds",
+          "address": {
+            "server": "vk-sxd0e-003",
+            "database": "TEST_Reporting_KOMOK"
+          },
+          "authentication": null,
+          "query": null
+        },
+        "options": {},
+        "credential": {
+          "AuthenticationKind": "Windows",
+          "Username": "hama.keli@ks.no",
+          "EncryptConnection": false
+        }
+      }
+    ],
+    "tables": [
+      {
+        "name": "Tabeller",
+        "columns": [
+          {
+            "name": "Tabellnummer",
+            "dataType": "string",
+            "sourceColumn": "Tabellnummer"
+          },
+          {
+            "name": "Gruppe",
+            "dataType": "string",
+            "sourceColumn": "Gruppe"
+          },
+          {
+            "name": "Kilde",
+            "dataType": "string",
+            "sourceColumn": "Kilde"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/vk-sxd0e-003;TEST_Reporting_KOMOK\",",
+                "    dbo_Tabeller = Source{[Schema=\"dbo\",Item=\"Tabeller\"]}[Data]",
+                "in",
+                "    dbo_Tabeller"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Regnskapsomfang",
+        "columns": [
+          {
+            "name": "Regnskapsomfangkode",
+            "dataType": "string",
+            "sourceColumn": "Regnskapsomfangkode"
+          },
+          {
+            "name": "Regnskapsomfangnavn",
+            "dataType": "string",
+            "sourceColumn": "Regnskapsomfangnavn"
+          },
+          {
+            "name": "RegnskapsomfangkodeNavn",
+            "dataType": "string",
+            "sourceColumn": "RegnskapsomfangkodeNavn"
+          },
+          {
+            "name": "Tabellkode",
+            "dataType": "string",
+            "sourceColumn": "Tabellkode"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/vk-sxd0e-003;TEST_Reporting_KOMOK\",",
+                "    dbo_Regnskapsomfang = Source{[Schema=\"dbo\",Item=\"Regnskapsomfang\"]}[Data]",
+                "in",
+                "    dbo_Regnskapsomfang"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Regnskapsbegrep",
+        "columns": [
+          {
+            "name": "Regnskapsbegrepkode",
+            "dataType": "string",
+            "sourceColumn": "Regnskapsbegrepkode"
+          },
+          {
+            "name": "Regnskapsbegrepnavn",
+            "dataType": "string",
+            "sourceColumn": "Regnskapsbegrepnavn"
+          },
+          {
+            "name": "RegnskapsbegrepkodeNavn",
+            "dataType": "string",
+            "sourceColumn": "RegnskapsbegrepkodeNavn"
+          },
+          {
+            "name": "Tabellkode",
+            "dataType": "string",
+            "sourceColumn": "Tabellkode"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/vk-sxd0e-003;TEST_Reporting_KOMOK\",",
+                "    dbo_Regnskapsbegrep = Source{[Schema=\"dbo\",Item=\"Regnskapsbegrep\"]}[Data]",
+                "in",
+                "    dbo_Regnskapsbegrep"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Kilde",
+        "columns": [
+          {
+            "name": "Kildekode",
+            "dataType": "string",
+            "sourceColumn": "Kildekode"
+          },
+          {
+            "name": "Kildenavn",
+            "dataType": "string",
+            "sourceColumn": "Kildenavn"
+          },
+          {
+            "name": "KildekodeNavn",
+            "dataType": "string",
+            "sourceColumn": "KildekodeNavn"
+          },
+          {
+            "name": "Tabellkode",
+            "dataType": "string",
+            "sourceColumn": "Tabellkode"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/vk-sxd0e-003;TEST_Reporting_KOMOK\",",
+                "    dbo_Kilde = Source{[Schema=\"dbo\",Item=\"Kilde\"]}[Data]",
+                "in",
+                "    dbo_Kilde"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Funksjon",
+        "columns": [
+          {
+            "name": "Funksjonkode",
+            "dataType": "string",
+            "sourceColumn": "Funksjonkode"
+          },
+          {
+            "name": "Funksjonnavn",
+            "dataType": "string",
+            "sourceColumn": "Funksjonnavn"
+          },
+          {
+            "name": "FunksjonkodeNavn",
+            "dataType": "string",
+            "sourceColumn": "FunksjonkodeNavn"
+          },
+          {
+            "name": "Tabellkode",
+            "dataType": "string",
+            "sourceColumn": "Tabellkode"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/vk-sxd0e-003;TEST_Reporting_KOMOK\",",
+                "    dbo_Funksjon = Source{[Schema=\"dbo\",Item=\"Funksjon\"]}[Data]",
+                "in",
+                "    dbo_Funksjon"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Balansedata",
+        "columns": [
+          {
+            "name": "Balansedatakode",
+            "dataType": "string",
+            "sourceColumn": "Balansedatakode"
+          },
+          {
+            "name": "Balansedatanavn",
+            "dataType": "string",
+            "sourceColumn": "Balansedatanavn"
+          },
+          {
+            "name": "BalansedatakodeNavn",
+            "dataType": "string",
+            "sourceColumn": "BalansedatakodeNavn"
+          },
+          {
+            "name": "Tabellkode",
+            "dataType": "string",
+            "sourceColumn": "Tabellkode"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/vk-sxd0e-003;TEST_Reporting_KOMOK\",",
+                "    dbo_Balansedata = Source{[Schema=\"dbo\",Item=\"Balansedata\"]}[Data]",
+                "in",
+                "    dbo_Balansedata"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Art",
+        "columns": [
+          {
+            "name": "Artkode",
+            "dataType": "string",
+            "sourceColumn": "Artkode"
+          },
+          {
+            "name": "Artnavn",
+            "dataType": "string",
+            "sourceColumn": "Artnavn"
+          },
+          {
+            "name": "ArtkodeNavn",
+            "dataType": "string",
+            "sourceColumn": "ArtkodeNavn"
+          },
+          {
+            "name": "Tabellkode",
+            "dataType": "string",
+            "sourceColumn": "Tabellkode"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/vk-sxd0e-003;TEST_Reporting_KOMOK\",",
+                "    dbo_Art = Source{[Schema=\"dbo\",Item=\"Art\"]}[Data]",
+                "in",
+                "    dbo_Art"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Alle Data",
+        "columns": [
+          {
+            "name": "Tabell",
+            "dataType": "string",
+            "sourceColumn": "Tabell"
+          },
+          {
+            "name": "Kode",
+            "dataType": "string",
+            "sourceColumn": "Kode"
+          },
+          {
+            "name": "Variabel",
+            "dataType": "string",
+            "sourceColumn": "Variabel"
+          },
+          {
+            "name": "Artkode",
+            "dataType": "string",
+            "sourceColumn": "Artkode"
+          },
+          {
+            "name": "Balansedatakode",
+            "dataType": "string",
+            "sourceColumn": "Balansedatakode"
+          },
+          {
+            "name": "Funksjonkode",
+            "dataType": "string",
+            "sourceColumn": "Funksjonkode"
+          },
+          {
+            "name": "Kildekode",
+            "dataType": "string",
+            "sourceColumn": "Kildekode"
+          },
+          {
+            "name": "Regnskapsbegrepkode",
+            "dataType": "string",
+            "sourceColumn": "Regnskapsbegrepkode"
+          },
+          {
+            "name": "Regnskapsomfangkode",
+            "dataType": "string",
+            "sourceColumn": "Regnskapsomfangkode"
+          },
+          {
+            "name": "År",
+            "dataType": "string",
+            "sourceColumn": "År"
+          },
+          {
+            "name": "Verdi",
+            "dataType": "double",
+            "sourceColumn": "Verdi"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/vk-sxd0e-003;TEST_Reporting_KOMOK\",",
+                "    #\"dbo_Alle Data\" = Source{[Schema=\"dbo\",Item=\"Alle Data\"]}[Data]",
+                "in",
+                "    #\"dbo_Alle Data\""
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Region",
+        "columns": [
+          {
+            "name": "Kode",
+            "dataType": "string",
+            "sourceColumn": "Kode"
+          },
+          {
+            "name": "Navn",
+            "dataType": "string",
+            "sourceColumn": "Navn"
+          },
+          {
+            "name": "KodeNummernavn",
+            "dataType": "string",
+            "sourceColumn": "KodeNummernavn"
+          },
+          {
+            "name": "Regionnummer",
+            "dataType": "string",
+            "sourceColumn": "Regionnummer"
+          },
+          {
+            "name": "Kategori",
+            "dataType": "string",
+            "sourceColumn": "Kategori"
+          },
+          {
+            "name": "GyldigFraDato",
+            "dataType": "dateTime",
+            "sourceColumn": "GyldigFraDato"
+          },
+          {
+            "name": "GyldigTilDato",
+            "dataType": "dateTime",
+            "sourceColumn": "GyldigTilDato"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/vk-sxd0e-003;TEST_Reporting_KOMOK\",",
+                "    dbo_Region = Source{[Schema=\"dbo\",Item=\"Region\"]}[Data]",
+                "in",
+                "    dbo_Region"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "8602431b-be7e-4e07-8215-6f8a39960202",
+        "fromTable": "Alle Data",
+        "fromColumn": "Artkode",
+        "toTable": "Art",
+        "toColumn": "Artkode"
+      },
+      {
+        "name": "919f588e-8799-4ac5-b7dc-69dfffb92716",
+        "fromTable": "Alle Data",
+        "fromColumn": "Balansedatakode",
+        "toTable": "Balansedata",
+        "toColumn": "Balansedatakode"
+      },
+      {
+        "name": "58f516ed-9f33-4d89-8a10-d94c9bf29bfb",
+        "fromTable": "Alle Data",
+        "fromColumn": "Funksjonkode",
+        "toTable": "Funksjon",
+        "toColumn": "Funksjonkode"
+      },
+      {
+        "name": "bc2e068a-e903-4922-9ac1-5fae1f5d73ca",
+        "fromTable": "Alle Data",
+        "fromColumn": "Kildekode",
+        "toTable": "Kilde",
+        "toColumn": "Kildekode"
+      },
+      {
+        "name": "6113d330-1dd3-47cd-8996-7be35d4669fd",
+        "fromTable": "Alle Data",
+        "fromColumn": "Regnskapsbegrepkode",
+        "toTable": "Regnskapsbegrep",
+        "toColumn": "Regnskapsbegrepkode"
+      },
+      {
+        "name": "0b03ff13-c93e-47cb-8bb5-befa6dbe591e",
+        "fromTable": "Alle Data",
+        "fromColumn": "Regnskapsomfangkode",
+        "toTable": "Regnskapsomfang",
+        "toColumn": "Regnskapsomfangkode"
+      },
+      {
+        "name": "324f2609-a226-46be-89f4-5b822384ad02",
+        "fromTable": "Alle Data",
+        "fromColumn": "Tabell",
+        "toTable": "Tabeller",
+        "toColumn": "Tabellnummer"
+      },
+      {
+        "name": "31259de8-a764-4da1-b6fd-8f271d37b37e",
+        "fromTable": "Alle Data",
+        "fromColumn": "Kode",
+        "toTable": "Region",
+        "toColumn": "Kode"
+      }
+    ],
+    "roles": [
+      {
+        "name": "Brukere",
+        "modelPermission": "read",
+        "members": [
+          {
+            "memberName": "I04\\VK.DB.VK-SXD0E-002_KOMOK.DBO",
+            "memberId": "S-1-5-21-2036031588-730629661-1306914269-1078585"
+          }
+        ]
+      },
+      {
+        "name": "PowerBI",
+        "modelPermission": "administrator",
+        "members": [
+          {
+            "memberName": "I04\\vk-PowerBIService",
+            "memberId": "S-1-5-21-2036031588-730629661-1306914269-1042837"
+          }
+        ]
+      }
+    ],
+    "annotations": [
+      {
+        "name": "ClientCompatibilityLevel",
+        "value": "500"
+      }
+    ]
+  },
+  "id": "SemanticModel"
+}

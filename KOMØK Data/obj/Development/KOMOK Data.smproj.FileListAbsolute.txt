@@ -1,0 +1,7 @@
+C:\Users\vk431\OneDrive - KS\Dokumenter\GitHub\KOMØK Data\KOMØK Data\bin\Model.asdatabase
+C:\Users\vk431\OneDrive - KS\Dokumenter\GitHub\KOMØK Data\KOMØK Data\bin\Model.deploymenttargets
+C:\Users\vk431\OneDrive - KS\Dokumenter\GitHub\KOMØK Data\KOMØK Data\bin\Model.deploymentoptions
+C:\Users\vk431\OneDrive - KS\Dokumenter\GitHub\KOMØK Data\KOMØK Data\obj\Development\KOMOK Data.smproj.CoreCompileInputs.cache
+C:\Users\vk431\OneDrive - KS\Dokumenter\GitHub\KOMØK Data\KOMØK Data\obj\Development\Model.asdatabase
+C:\Users\vk431\OneDrive - KS\Dokumenter\GitHub\KOMØK Data\KOMØK Data\obj\Development\Model.deploymentoptions
+C:\Users\vk431\OneDrive - KS\Dokumenter\GitHub\KOMØK Data\KOMØK Data\obj\Development\Model.deploymenttargets
