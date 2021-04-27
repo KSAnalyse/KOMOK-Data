@@ -18,6 +18,8 @@
         },
         "credential": {
           "AuthenticationKind": "Windows",
+          "kind": "SQL",
+          "path": "vk-sxd0e-003;TEST_Reporting_KOMOK",
           "Username": "hama.keli@ks.no",
           "EncryptConnection": false
         }
@@ -25,181 +27,99 @@
     ],
     "tables": [
       {
-        "name": "Tabeller",
+        "name": "Alle Data",
         "columns": [
           {
-            "name": "Tabellnummer",
+            "name": "Tabell",
             "dataType": "string",
-            "sourceColumn": "Tabellnummer"
+            "sourceColumn": "Tabell"
           },
           {
-            "name": "Gruppe",
+            "name": "Kode",
             "dataType": "string",
-            "sourceColumn": "Gruppe"
+            "sourceColumn": "Kode"
           },
           {
-            "name": "Kilde",
+            "name": "Variabel",
             "dataType": "string",
-            "sourceColumn": "Kilde"
-          }
-        ],
-        "partitions": [
-          {
-            "name": "Partition",
-            "dataView": "full",
-            "source": {
-              "type": "m",
-              "expression": [
-                "let",
-                "    Source = #\"SQL/vk-sxd0e-003;TEST_Reporting_KOMOK\",",
-                "    dbo_Tabeller = Source{[Schema=\"dbo\",Item=\"Tabeller\"]}[Data]",
-                "in",
-                "    dbo_Tabeller"
-              ]
-            }
-          }
-        ]
-      },
-      {
-        "name": "Regnskapsomfang",
-        "columns": [
-          {
-            "name": "Regnskapsomfangkode",
-            "dataType": "string",
-            "sourceColumn": "Regnskapsomfangkode"
+            "sourceColumn": "Variabel"
           },
           {
-            "name": "Regnskapsomfangnavn",
+            "name": "Artkode",
             "dataType": "string",
-            "sourceColumn": "Regnskapsomfangnavn"
+            "sourceColumn": "Artkode"
           },
           {
-            "name": "RegnskapsomfangkodeNavn",
+            "name": "Balansedatakode",
             "dataType": "string",
-            "sourceColumn": "RegnskapsomfangkodeNavn"
+            "sourceColumn": "Balansedatakode"
           },
-          {
-            "name": "Tabellkode",
-            "dataType": "string",
-            "sourceColumn": "Tabellkode"
-          }
-        ],
-        "partitions": [
-          {
-            "name": "Partition",
-            "dataView": "full",
-            "source": {
-              "type": "m",
-              "expression": [
-                "let",
-                "    Source = #\"SQL/vk-sxd0e-003;TEST_Reporting_KOMOK\",",
-                "    dbo_Regnskapsomfang = Source{[Schema=\"dbo\",Item=\"Regnskapsomfang\"]}[Data]",
-                "in",
-                "    dbo_Regnskapsomfang"
-              ]
-            }
-          }
-        ]
-      },
-      {
-        "name": "Regnskapsbegrep",
-        "columns": [
-          {
-            "name": "Regnskapsbegrepkode",
-            "dataType": "string",
-            "sourceColumn": "Regnskapsbegrepkode"
-          },
-          {
-            "name": "Regnskapsbegrepnavn",
-            "dataType": "string",
-            "sourceColumn": "Regnskapsbegrepnavn"
-          },
-          {
-            "name": "RegnskapsbegrepkodeNavn",
-            "dataType": "string",
-            "sourceColumn": "RegnskapsbegrepkodeNavn"
-          },
-          {
-            "name": "Tabellkode",
-            "dataType": "string",
-            "sourceColumn": "Tabellkode"
-          }
-        ],
-        "partitions": [
-          {
-            "name": "Partition",
-            "dataView": "full",
-            "source": {
-              "type": "m",
-              "expression": [
-                "let",
-                "    Source = #\"SQL/vk-sxd0e-003;TEST_Reporting_KOMOK\",",
-                "    dbo_Regnskapsbegrep = Source{[Schema=\"dbo\",Item=\"Regnskapsbegrep\"]}[Data]",
-                "in",
-                "    dbo_Regnskapsbegrep"
-              ]
-            }
-          }
-        ]
-      },
-      {
-        "name": "Kilde",
-        "columns": [
-          {
-            "name": "Kildekode",
-            "dataType": "string",
-            "sourceColumn": "Kildekode"
-          },
-          {
-            "name": "Kildenavn",
-            "dataType": "string",
-            "sourceColumn": "Kildenavn"
-          },
-          {
-            "name": "KildekodeNavn",
-            "dataType": "string",
-            "sourceColumn": "KildekodeNavn"
-          },
-          {
-            "name": "Tabellkode",
-            "dataType": "string",
-            "sourceColumn": "Tabellkode"
-          }
-        ],
-        "partitions": [
-          {
-            "name": "Partition",
-            "dataView": "full",
-            "source": {
-              "type": "m",
-              "expression": [
-                "let",
-                "    Source = #\"SQL/vk-sxd0e-003;TEST_Reporting_KOMOK\",",
-                "    dbo_Kilde = Source{[Schema=\"dbo\",Item=\"Kilde\"]}[Data]",
-                "in",
-                "    dbo_Kilde"
-              ]
-            }
-          }
-        ]
-      },
-      {
-        "name": "Funksjon",
-        "columns": [
           {
             "name": "Funksjonkode",
             "dataType": "string",
             "sourceColumn": "Funksjonkode"
           },
           {
-            "name": "Funksjonnavn",
+            "name": "Kildekode",
             "dataType": "string",
-            "sourceColumn": "Funksjonnavn"
+            "sourceColumn": "Kildekode"
           },
           {
-            "name": "FunksjonkodeNavn",
+            "name": "Regnskapsbegrepkode",
             "dataType": "string",
-            "sourceColumn": "FunksjonkodeNavn"
+            "sourceColumn": "Regnskapsbegrepkode"
+          },
+          {
+            "name": "År",
+            "dataType": "string",
+            "sourceColumn": "År"
+          },
+          {
+            "name": "Verdi",
+            "dataType": "double",
+            "sourceColumn": "Verdi"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/vk-sxd0e-003;TEST_Reporting_KOMOK\",",
+                "    #\"dbo_Alle Data\" = Source{[Schema=\"dbo\",Item=\"Alle Data\"]}[Data]",
+                "in",
+                "    #\"dbo_Alle Data\""
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Sum dataverdi",
+            "expression": "SUM('Alle Data'[Verdi])"
+          }
+        ]
+      },
+      {
+        "name": "Art",
+        "columns": [
+          {
+            "name": "Artkode",
+            "dataType": "string",
+            "sourceColumn": "Artkode"
+          },
+          {
+            "name": "Artnavn",
+            "dataType": "string",
+            "sourceColumn": "Artnavn"
+          },
+          {
+            "name": "ArtkodeNavn",
+            "dataType": "string",
+            "sourceColumn": "ArtkodeNavn"
           },
           {
             "name": "Tabellkode",
@@ -216,9 +136,9 @@
               "expression": [
                 "let",
                 "    Source = #\"SQL/vk-sxd0e-003;TEST_Reporting_KOMOK\",",
-                "    dbo_Funksjon = Source{[Schema=\"dbo\",Item=\"Funksjon\"]}[Data]",
+                "    dbo_Art = Source{[Schema=\"dbo\",Item=\"Art\"]}[Data]",
                 "in",
-                "    dbo_Funksjon"
+                "    dbo_Art"
               ]
             }
           }
@@ -266,22 +186,22 @@
         ]
       },
       {
-        "name": "Art",
+        "name": "Funksjon",
         "columns": [
           {
-            "name": "Artkode",
+            "name": "Funksjonkode",
             "dataType": "string",
-            "sourceColumn": "Artkode"
+            "sourceColumn": "Funksjonkode"
           },
           {
-            "name": "Artnavn",
+            "name": "Funksjonnavn",
             "dataType": "string",
-            "sourceColumn": "Artnavn"
+            "sourceColumn": "Funksjonnavn"
           },
           {
-            "name": "ArtkodeNavn",
+            "name": "FunksjonkodeNavn",
             "dataType": "string",
-            "sourceColumn": "ArtkodeNavn"
+            "sourceColumn": "FunksjonkodeNavn"
           },
           {
             "name": "Tabellkode",
@@ -298,71 +218,36 @@
               "expression": [
                 "let",
                 "    Source = #\"SQL/vk-sxd0e-003;TEST_Reporting_KOMOK\",",
-                "    dbo_Art = Source{[Schema=\"dbo\",Item=\"Art\"]}[Data]",
+                "    dbo_Funksjon = Source{[Schema=\"dbo\",Item=\"Funksjon\"]}[Data]",
                 "in",
-                "    dbo_Art"
+                "    dbo_Funksjon"
               ]
             }
           }
         ]
       },
       {
-        "name": "Alle Data",
+        "name": "Kilde",
         "columns": [
-          {
-            "name": "Tabell",
-            "dataType": "string",
-            "sourceColumn": "Tabell"
-          },
-          {
-            "name": "Kode",
-            "dataType": "string",
-            "sourceColumn": "Kode"
-          },
-          {
-            "name": "Variabel",
-            "dataType": "string",
-            "sourceColumn": "Variabel"
-          },
-          {
-            "name": "Artkode",
-            "dataType": "string",
-            "sourceColumn": "Artkode"
-          },
-          {
-            "name": "Balansedatakode",
-            "dataType": "string",
-            "sourceColumn": "Balansedatakode"
-          },
-          {
-            "name": "Funksjonkode",
-            "dataType": "string",
-            "sourceColumn": "Funksjonkode"
-          },
           {
             "name": "Kildekode",
             "dataType": "string",
             "sourceColumn": "Kildekode"
           },
           {
-            "name": "Regnskapsbegrepkode",
+            "name": "Kildenavn",
             "dataType": "string",
-            "sourceColumn": "Regnskapsbegrepkode"
+            "sourceColumn": "Kildenavn"
           },
           {
-            "name": "Regnskapsomfangkode",
+            "name": "KildekodeNavn",
             "dataType": "string",
-            "sourceColumn": "Regnskapsomfangkode"
+            "sourceColumn": "KildekodeNavn"
           },
           {
-            "name": "År",
+            "name": "Tabellkode",
             "dataType": "string",
-            "sourceColumn": "År"
-          },
-          {
-            "name": "Verdi",
-            "dataType": "double",
-            "sourceColumn": "Verdi"
+            "sourceColumn": "Tabellkode"
           }
         ],
         "partitions": [
@@ -374,9 +259,9 @@
               "expression": [
                 "let",
                 "    Source = #\"SQL/vk-sxd0e-003;TEST_Reporting_KOMOK\",",
-                "    #\"dbo_Alle Data\" = Source{[Schema=\"dbo\",Item=\"Alle Data\"]}[Data]",
+                "    dbo_Kilde = Source{[Schema=\"dbo\",Item=\"Kilde\"]}[Data]",
                 "in",
-                "    #\"dbo_Alle Data\""
+                "    dbo_Kilde"
               ]
             }
           }
@@ -437,64 +322,336 @@
             }
           }
         ]
+      },
+      {
+        "name": "Regnskapsbegrep",
+        "columns": [
+          {
+            "name": "Regnskapsbegrepkode",
+            "dataType": "string",
+            "sourceColumn": "Regnskapsbegrepkode"
+          },
+          {
+            "name": "Regnskapsbegrepnavn",
+            "dataType": "string",
+            "sourceColumn": "Regnskapsbegrepnavn"
+          },
+          {
+            "name": "RegnskapsbegrepkodeNavn",
+            "dataType": "string",
+            "sourceColumn": "RegnskapsbegrepkodeNavn"
+          },
+          {
+            "name": "Tabellkode",
+            "dataType": "string",
+            "sourceColumn": "Tabellkode"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/vk-sxd0e-003;TEST_Reporting_KOMOK\",",
+                "    dbo_Regnskapsbegrep = Source{[Schema=\"dbo\",Item=\"Regnskapsbegrep\"]}[Data]",
+                "in",
+                "    dbo_Regnskapsbegrep"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Tabeller",
+        "columns": [
+          {
+            "name": "Tabellnummer",
+            "dataType": "string",
+            "sourceColumn": "Tabellnummer"
+          },
+          {
+            "name": "Gruppe",
+            "dataType": "string",
+            "sourceColumn": "Gruppe"
+          },
+          {
+            "name": "Kilde",
+            "dataType": "string",
+            "sourceColumn": "Kilde"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/vk-sxd0e-003;TEST_Reporting_KOMOK\",",
+                "    dbo_Tabeller = Source{[Schema=\"dbo\",Item=\"Tabeller\"]}[Data]",
+                "in",
+                "    dbo_Tabeller"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Variabel",
+        "columns": [
+          {
+            "name": "Gruppe",
+            "dataType": "string",
+            "sourceColumn": "Gruppe"
+          },
+          {
+            "name": "Variabelkode",
+            "dataType": "string",
+            "sourceColumn": "Variabelkode"
+          },
+          {
+            "name": "Variabelnavn",
+            "dataType": "string",
+            "sourceColumn": "Variabelnavn"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/vk-sxd0e-003;TEST_Reporting_KOMOK\",",
+                "    dbo_Variabel = Source{[Schema=\"dbo\",Item=\"Variabel\"]}[Data]",
+                "in",
+                "    dbo_Variabel"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "KOMØK Indikatorer",
+        "columns": [
+          {
+            "name": "Andre",
+            "dataType": "int64",
+            "sourceColumn": "Andre"
+          },
+          {
+            "name": "Hovedtall",
+            "dataType": "int64",
+            "sourceColumn": "Hovedtall"
+          },
+          {
+            "name": "Tjenesteområder",
+            "dataType": "int64",
+            "sourceColumn": "Tjenesteområder"
+          },
+          {
+            "name": "Øko- Oversikt",
+            "dataType": "int64",
+            "sourceColumn": "Øko- Oversikt"
+          },
+          {
+            "name": "Øko- Oversikt ekskl foretak",
+            "dataType": "int64",
+            "sourceColumn": "Øko- Oversikt ekskl foretak"
+          },
+          {
+            "name": "Indeksert",
+            "dataType": "string",
+            "sourceColumn": "Indeksert"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/vk-sxd0e-003;TEST_Reporting_KOMOK\",",
+                "    #\"dbo_KOMØK Indikatorer\" = Source{[Schema=\"dbo\",Item=\"KOMØK Indikatorer\"]}[Data]",
+                "in",
+                "    #\"dbo_KOMØK Indikatorer\""
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Netto driftsresultat i prosent av brutto driftsinntekter kommune",
+            "expression": [
+              "",
+              "",
+              "VAR NettoDriftsresultat = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"12364\"),",
+              "        FILTER(ALL(Regnskapsbegrep[Regnskapsbegrepnavn]), [Regnskapsbegrepnavn] = \"Netto driftsresultat\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
+              "    )",
+              "",
+              "VAR BruttoDriftsinntekter = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"12364\"),",
+              "        FILTER(ALL(Regnskapsbegrep[Regnskapsbegrepnavn]), [Regnskapsbegrepnavn] = \"Brutto driftsinntekter i alt\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
+              "    )",
+              "",
+              "VAR HarBlanke = ISBLANK(NettoDriftsresultat) || ISBLANK(BruttoDriftsinntekter)",
+              "",
+              "RETURN (",
+              "    IF(HarBlanke,",
+              "        BLANK(),",
+              "        ROUND(",
+              "            DIVIDE(NettoDriftsresultat, BruttoDriftsinntekter) * 100, 8",
+              "        )",
+              "    )",
+              ")"
+            ]
+          },
+          {
+            "name": "Disposisjonsfond korrigert for årets netto merforbuk i prosent av driftsinntekter kommune",
+            "expression": [
+              "",
+              "",
+              "VAR BruttoDriftsinntekerIAlt = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"12364\"),",
+              "        FILTER(ALL(Regnskapsbegrep[Regnskapsbegrepnavn]), [Regnskapsbegrepnavn] = \"Brutto driftsinntekter i alt\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
+              "    )",
+              "",
+              "VAR Disposisjonsfond = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"12364\"),",
+              "        FILTER(ALL(Regnskapsbegrep[Regnskapsbegrepnavn]), [Regnskapsbegrepnavn] = \"Disposisjonsfond (K)\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
+              "    )",
+              "",
+              "VAR AaretsMerforbrukIDriftsregnskapet = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]),[Tabellnummer] = \"12364\"),",
+              "        FILTER(ALL(Regnskapsbegrep[Regnskapsbegrepnavn]), [Regnskapsbegrepnavn] = \"Årets merforbruk i driftsregnskapet\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
+              "    )",
+              "",
+              "VAR HarBlanke = ISBLANK(BruttoDriftsinntekerIAlt) || ISBLANK(Disposisjonsfond) || ISBLANK(AaretsMerforbrukIDriftsregnskapet)",
+              "",
+              "RETURN (",
+              "    IF(HarBlanke,",
+              "        BLANK(),",
+              "        ROUND(",
+              "            DIVIDE(Disposisjonsfond + AaretsMerforbrukIDriftsregnskapet, BruttoDriftsinntekerIAlt) * 100, 8",
+              "        )",
+              "    )",
+              ")"
+            ]
+          },
+          {
+            "name": "Korrigert netto driftsresultat i prosent av brutto driftsinntekter",
+            "expression": [
+              " ",
+              "",
+              "VAR BruttoDriftsinntekterIAlt = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"12364\"),",
+              "        FILTER(ALL(Regnskapsbegrep[Regnskapsbegrepnavn]), [Regnskapsbegrepnavn] = \"Brutto driftsinntekter i alt\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\"),",
+              "    )",
+              "",
+              "VAR NettoDriftsresultat = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"12364\"),",
+              "        FILTER(ALL(Regnskapsbegrep[Regnskapsbegrepnavn]), [Regnskapsbegrepnavn] = \"Netto driftsresultat\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
+              "    )",
+              "",
+              "VAR AvsetningTilBundneFondNetto = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"12364\"),",
+              "        FILTER(ALL(Regnskapsbegrep[Regnskapsbegrepnavn]), [Regnskapsbegrepnavn] = \"Avsetning til bundne fond (netto)\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
+              "    )",
+              "",
+              "VAR HarBlanke = ISBLANK(BruttoDriftsinntekterIAlt) || ISBLANK(NettoDriftsresultat) || ISBLANK(AvsetningTilBundneFondNetto)",
+              "",
+              "RETURN (",
+              "    IF(HarBlanke,",
+              "        BLANK(),",
+              "        ROUND(",
+              "            DIVIDE(NettoDriftsresultat + AvsetningTilBundneFondNetto, BruttoDriftsinntekterIAlt) * 100, 8)",
+              "    )",
+              ")"
+            ]
+          }
+        ]
       }
     ],
     "relationships": [
       {
-        "name": "8602431b-be7e-4e07-8215-6f8a39960202",
+        "name": "4b50dd00-2bc4-4226-adcc-afaa2264d904",
         "fromTable": "Alle Data",
         "fromColumn": "Artkode",
         "toTable": "Art",
         "toColumn": "Artkode"
       },
       {
-        "name": "919f588e-8799-4ac5-b7dc-69dfffb92716",
-        "fromTable": "Alle Data",
-        "fromColumn": "Balansedatakode",
-        "toTable": "Balansedata",
-        "toColumn": "Balansedatakode"
-      },
-      {
-        "name": "58f516ed-9f33-4d89-8a10-d94c9bf29bfb",
-        "fromTable": "Alle Data",
-        "fromColumn": "Funksjonkode",
-        "toTable": "Funksjon",
-        "toColumn": "Funksjonkode"
-      },
-      {
-        "name": "bc2e068a-e903-4922-9ac1-5fae1f5d73ca",
+        "name": "87d53ce4-13d4-42dc-a0b7-9f6290a6002f",
         "fromTable": "Alle Data",
         "fromColumn": "Kildekode",
         "toTable": "Kilde",
         "toColumn": "Kildekode"
       },
       {
-        "name": "6113d330-1dd3-47cd-8996-7be35d4669fd",
+        "name": "ae3dd9e0-6391-4873-814f-f546be9d43af",
+        "fromTable": "Alle Data",
+        "fromColumn": "Kode",
+        "toTable": "Region",
+        "toColumn": "Kode"
+      },
+      {
+        "name": "a6a9ef68-bc24-4753-97f0-be9763912084",
         "fromTable": "Alle Data",
         "fromColumn": "Regnskapsbegrepkode",
         "toTable": "Regnskapsbegrep",
         "toColumn": "Regnskapsbegrepkode"
       },
       {
-        "name": "0b03ff13-c93e-47cb-8bb5-befa6dbe591e",
-        "fromTable": "Alle Data",
-        "fromColumn": "Regnskapsomfangkode",
-        "toTable": "Regnskapsomfang",
-        "toColumn": "Regnskapsomfangkode"
-      },
-      {
-        "name": "324f2609-a226-46be-89f4-5b822384ad02",
+        "name": "d4c5cb7e-0dac-44d5-a7c7-dedcbeec0f20",
         "fromTable": "Alle Data",
         "fromColumn": "Tabell",
         "toTable": "Tabeller",
         "toColumn": "Tabellnummer"
       },
       {
-        "name": "31259de8-a764-4da1-b6fd-8f271d37b37e",
+        "name": "39c4585f-88df-4c90-ba29-7001f983e9ba",
         "fromTable": "Alle Data",
-        "fromColumn": "Kode",
-        "toTable": "Region",
-        "toColumn": "Kode"
+        "fromColumn": "Variabel",
+        "toTable": "Variabel",
+        "toColumn": "Variabelkode"
+      },
+      {
+        "name": "bd66c095-a64b-4453-952a-4fe6eb88af22",
+        "fromTable": "Alle Data",
+        "fromColumn": "Balansedatakode",
+        "toTable": "Balansedata",
+        "toColumn": "Balansedatakode"
+      },
+      {
+        "name": "06c4c976-b83f-42c4-90bf-3bd377e09189",
+        "fromTable": "Alle Data",
+        "fromColumn": "Funksjonkode",
+        "toTable": "Funksjon",
+        "toColumn": "Funksjonkode"
       }
     ],
     "roles": [
