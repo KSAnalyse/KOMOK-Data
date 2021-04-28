@@ -5,3 +5,10 @@ C:\Users\vk431\OneDrive - KS\Dokumenter\GitHub\KOMØK Data\KOMØK Data\obj\Devel
 C:\Users\vk431\OneDrive - KS\Dokumenter\GitHub\KOMØK Data\KOMØK Data\obj\Development\Model.asdatabase
 C:\Users\vk431\OneDrive - KS\Dokumenter\GitHub\KOMØK Data\KOMØK Data\obj\Development\Model.deploymentoptions
 C:\Users\vk431\OneDrive - KS\Dokumenter\GitHub\KOMØK Data\KOMØK Data\obj\Development\Model.deploymenttargets
+C:\Users\vk431\Documents\GitHub\KOMOK Data\KOMØK Data\bin\KOMOK Kube.asdatabase
+C:\Users\vk431\Documents\GitHub\KOMOK Data\KOMØK Data\bin\KOMOK Kube.deploymenttargets
+C:\Users\vk431\Documents\GitHub\KOMOK Data\KOMØK Data\bin\KOMOK Kube.deploymentoptions
+C:\Users\vk431\Documents\GitHub\KOMOK Data\KOMØK Data\obj\Development\KOMOK Data.smproj.CoreCompileInputs.cache
+C:\Users\vk431\Documents\GitHub\KOMOK Data\KOMØK Data\obj\Development\KOMOK Kube.asdatabase
+C:\Users\vk431\Documents\GitHub\KOMOK Data\KOMØK Data\obj\Development\KOMOK Kube.deploymentoptions
+C:\Users\vk431\Documents\GitHub\KOMOK Data\KOMØK Data\obj\Development\KOMOK Kube.deploymenttargets
