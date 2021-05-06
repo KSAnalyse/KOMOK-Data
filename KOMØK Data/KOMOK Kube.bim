@@ -6,19 +6,20 @@
     "dataSources": [
       {
         "type": "structured",
-        "name": "SQL/vk-sxd0e-003;TEST_Reporting_KOMOK",
+        "name": "SQL/vk-sxd0e-002;Reporting_KOMOK",
         "connectionDetails": {
           "protocol": "tds",
           "address": {
-            "server": "vk-sxd0e-003",
-            "database": "TEST_Reporting_KOMOK"
+            "server": "vk-sxd0e-002",
+            "database": "Reporting_KOMOK"
           },
           "authentication": null,
           "query": null
         },
-        "options": {},
         "credential": {
           "AuthenticationKind": "Windows",
+          "kind": "SQL",
+          "path": "vk-sxd0e-002;Reporting_KOMOK",
           "Username": "hama.keli@ks.no",
           "EncryptConnection": false
         }
@@ -87,7 +88,7 @@
               "type": "m",
               "expression": [
                 "let",
-                "    Source = #\"SQL/vk-sxd0e-003;TEST_Reporting_KOMOK\",",
+                "    Source = #\"SQL/vk-sxd0e-002;Reporting_KOMOK\",",
                 "    #\"dbo_Alle Data\" = Source{[Schema=\"dbo\",Item=\"Alle Data\"]}[Data]",
                 "in",
                 "    #\"dbo_Alle Data\""
@@ -104,8 +105,6 @@
             "name": "Nøkkeltall - Brutto driftsinntekter i alt - AGD13 - 12364",
             "expression": [
               "",
-              "",
-              "VAR ValgtRegion = SELECTEDVALUE(Region[Kode])",
               "",
               "VAR BruttoDriftsinntekterIAlt = ",
               "    CALCULATE(SUM('Alle Data'[Verdi]),",
@@ -129,7 +128,7 @@
               "    )",
               "",
               "RETURN(",
-              "    IF(LEFT(ValgtRegion, 3) = \"OVR\",",
+              "    IF(LEFT([Valgt regionkode], 3) = \"OVR\",",
               "        OvrigeBruttoDriftsinntekterIAlt,",
               "        IF(LEFT([Valgt regionkode], 3) = \"RAL\",",
               "            RALBruttoDriftsinntekterIAlt,",
@@ -185,7 +184,7 @@
               "    )",
               "",
               "VAR Resultat =",
-              "    IF(LEFT([Valgt regionkode], 3) = \"OVR\",",
+              "    IF(LEFT([Valgt regionkode], 3) = \"OVR\" || LEFT([Valgt regionkode], 3) = \"RAL\",",
               "        OvrigeGammelEllerNy,",
               "        GammelEllerNy",
               "    )",
@@ -205,7 +204,7 @@
             ]
           },
           {
-            "name": "Nøkkeltall - Ubundet investeringsfond - 53/KG92 - 12177/13202",
+            "name": "Nøkkeltall - Ubundet investeringsfond - 53/KG69 - 12177/13202",
             "expression": [
               "",
               "",
@@ -251,7 +250,7 @@
               "    )",
               "",
               "VAR Resultat = ",
-              "    IF(LEFT([Valgt regionkode], 3) = \"OVR\",",
+              "    IF(LEFT([Valgt regionkode], 3) = \"OVR\" || LEFT([Valgt regionkode], 3) = \"RAL\",",
               "        OvrigeGammelEllerNy,",
               "        GammelEllerNy",
               "    )",
@@ -305,7 +304,7 @@
               "    )",
               "",
               "VAR Resultat = ",
-              "    IF(LEFT([Valgt regionkode], 3) = \"OVR\",",
+              "    IF(LEFT([Valgt regionkode], 3) = \"OVR\" || LEFT([Valgt regionkode], 3) = \"RAL\",",
               "        OvrigeGammelEllerNy,",
               "        GammelEllerNy",
               "    )",
@@ -466,598 +465,6 @@
               "",
               "RETURN(Resultat)"
             ]
-          }
-        ]
-      },
-      {
-        "name": "Art",
-        "columns": [
-          {
-            "name": "Artkode",
-            "dataType": "string",
-            "sourceColumn": "Artkode"
-          },
-          {
-            "name": "Artnavn",
-            "dataType": "string",
-            "sourceColumn": "Artnavn"
-          },
-          {
-            "name": "ArtkodeNavn",
-            "dataType": "string",
-            "sourceColumn": "ArtkodeNavn"
-          },
-          {
-            "name": "Tabellkode",
-            "dataType": "string",
-            "sourceColumn": "Tabellkode"
-          }
-        ],
-        "partitions": [
-          {
-            "name": "Partition",
-            "dataView": "full",
-            "source": {
-              "type": "m",
-              "expression": [
-                "let",
-                "    Source = #\"SQL/vk-sxd0e-003;TEST_Reporting_KOMOK\",",
-                "    dbo_Art = Source{[Schema=\"dbo\",Item=\"Art\"]}[Data]",
-                "in",
-                "    dbo_Art"
-              ]
-            }
-          }
-        ]
-      },
-      {
-        "name": "Balansedata",
-        "columns": [
-          {
-            "name": "Balansedatakode",
-            "dataType": "string",
-            "sourceColumn": "Balansedatakode"
-          },
-          {
-            "name": "Balansedatanavn",
-            "dataType": "string",
-            "sourceColumn": "Balansedatanavn"
-          },
-          {
-            "name": "BalansedatakodeNavn",
-            "dataType": "string",
-            "sourceColumn": "BalansedatakodeNavn"
-          },
-          {
-            "name": "Tabellkode",
-            "dataType": "string",
-            "sourceColumn": "Tabellkode"
-          }
-        ],
-        "partitions": [
-          {
-            "name": "Partition",
-            "dataView": "full",
-            "source": {
-              "type": "m",
-              "expression": [
-                "let",
-                "    Source = #\"SQL/vk-sxd0e-003;TEST_Reporting_KOMOK\",",
-                "    dbo_Balansedata = Source{[Schema=\"dbo\",Item=\"Balansedata\"]}[Data]",
-                "in",
-                "    dbo_Balansedata"
-              ]
-            }
-          }
-        ]
-      },
-      {
-        "name": "Funksjon",
-        "columns": [
-          {
-            "name": "Funksjonkode",
-            "dataType": "string",
-            "sourceColumn": "Funksjonkode"
-          },
-          {
-            "name": "Funksjonnavn",
-            "dataType": "string",
-            "sourceColumn": "Funksjonnavn"
-          },
-          {
-            "name": "FunksjonkodeNavn",
-            "dataType": "string",
-            "sourceColumn": "FunksjonkodeNavn"
-          },
-          {
-            "name": "Tabellkode",
-            "dataType": "string",
-            "sourceColumn": "Tabellkode"
-          }
-        ],
-        "partitions": [
-          {
-            "name": "Partition",
-            "dataView": "full",
-            "source": {
-              "type": "m",
-              "expression": [
-                "let",
-                "    Source = #\"SQL/vk-sxd0e-003;TEST_Reporting_KOMOK\",",
-                "    dbo_Funksjon = Source{[Schema=\"dbo\",Item=\"Funksjon\"]}[Data]",
-                "in",
-                "    dbo_Funksjon"
-              ]
-            }
-          }
-        ]
-      },
-      {
-        "name": "Kilde",
-        "columns": [
-          {
-            "name": "Kildekode",
-            "dataType": "string",
-            "sourceColumn": "Kildekode"
-          },
-          {
-            "name": "Kildenavn",
-            "dataType": "string",
-            "sourceColumn": "Kildenavn"
-          },
-          {
-            "name": "KildekodeNavn",
-            "dataType": "string",
-            "sourceColumn": "KildekodeNavn"
-          },
-          {
-            "name": "Tabellkode",
-            "dataType": "string",
-            "sourceColumn": "Tabellkode"
-          }
-        ],
-        "partitions": [
-          {
-            "name": "Partition",
-            "dataView": "full",
-            "source": {
-              "type": "m",
-              "expression": [
-                "let",
-                "    Source = #\"SQL/vk-sxd0e-003;TEST_Reporting_KOMOK\",",
-                "    dbo_Kilde = Source{[Schema=\"dbo\",Item=\"Kilde\"]}[Data]",
-                "in",
-                "    dbo_Kilde"
-              ]
-            }
-          }
-        ]
-      },
-      {
-        "name": "Region",
-        "columns": [
-          {
-            "name": "Kode",
-            "dataType": "string",
-            "sourceColumn": "Kode"
-          },
-          {
-            "name": "Navn",
-            "dataType": "string",
-            "sourceColumn": "Navn"
-          },
-          {
-            "name": "KodeNummernavn",
-            "dataType": "string",
-            "sourceColumn": "KodeNummernavn"
-          },
-          {
-            "name": "Regionnummer",
-            "dataType": "string",
-            "sourceColumn": "Regionnummer"
-          },
-          {
-            "name": "Kategori",
-            "dataType": "string",
-            "sourceColumn": "Kategori"
-          },
-          {
-            "name": "GyldigFraDato",
-            "dataType": "dateTime",
-            "sourceColumn": "GyldigFraDato"
-          },
-          {
-            "name": "GyldigTilDato",
-            "dataType": "dateTime",
-            "sourceColumn": "GyldigTilDato"
-          }
-        ],
-        "partitions": [
-          {
-            "name": "Partition",
-            "dataView": "full",
-            "source": {
-              "type": "m",
-              "expression": [
-                "let",
-                "    Source = #\"SQL/vk-sxd0e-003;TEST_Reporting_KOMOK\",",
-                "    dbo_Region = Source{[Schema=\"dbo\",Item=\"Region\"]}[Data]",
-                "in",
-                "    dbo_Region"
-              ]
-            }
-          }
-        ]
-      },
-      {
-        "name": "Regnskapsbegrep",
-        "columns": [
-          {
-            "name": "Regnskapsbegrepkode",
-            "dataType": "string",
-            "sourceColumn": "Regnskapsbegrepkode"
-          },
-          {
-            "name": "Regnskapsbegrepnavn",
-            "dataType": "string",
-            "sourceColumn": "Regnskapsbegrepnavn"
-          },
-          {
-            "name": "RegnskapsbegrepkodeNavn",
-            "dataType": "string",
-            "sourceColumn": "RegnskapsbegrepkodeNavn"
-          },
-          {
-            "name": "Tabellkode",
-            "dataType": "string",
-            "sourceColumn": "Tabellkode"
-          }
-        ],
-        "partitions": [
-          {
-            "name": "Partition",
-            "dataView": "full",
-            "source": {
-              "type": "m",
-              "expression": [
-                "let",
-                "    Source = #\"SQL/vk-sxd0e-003;TEST_Reporting_KOMOK\",",
-                "    dbo_Regnskapsbegrep = Source{[Schema=\"dbo\",Item=\"Regnskapsbegrep\"]}[Data]",
-                "in",
-                "    dbo_Regnskapsbegrep"
-              ]
-            }
-          }
-        ]
-      },
-      {
-        "name": "Tabeller",
-        "columns": [
-          {
-            "name": "Tabellnummer",
-            "dataType": "string",
-            "sourceColumn": "Tabellnummer"
-          },
-          {
-            "name": "Gruppe",
-            "dataType": "string",
-            "sourceColumn": "Gruppe"
-          },
-          {
-            "name": "Kilde",
-            "dataType": "string",
-            "sourceColumn": "Kilde"
-          }
-        ],
-        "partitions": [
-          {
-            "name": "Partition",
-            "dataView": "full",
-            "source": {
-              "type": "m",
-              "expression": [
-                "let",
-                "    Source = #\"SQL/vk-sxd0e-003;TEST_Reporting_KOMOK\",",
-                "    dbo_Tabeller = Source{[Schema=\"dbo\",Item=\"Tabeller\"]}[Data]",
-                "in",
-                "    dbo_Tabeller"
-              ]
-            }
-          }
-        ]
-      },
-      {
-        "name": "Variabel",
-        "columns": [
-          {
-            "name": "Gruppe",
-            "dataType": "string",
-            "sourceColumn": "Gruppe"
-          },
-          {
-            "name": "Variabelkode",
-            "dataType": "string",
-            "sourceColumn": "Variabelkode"
-          },
-          {
-            "name": "Variabelnavn",
-            "dataType": "string",
-            "sourceColumn": "Variabelnavn"
-          }
-        ],
-        "partitions": [
-          {
-            "name": "Partition",
-            "dataView": "full",
-            "source": {
-              "type": "m",
-              "expression": [
-                "let",
-                "    Source = #\"SQL/vk-sxd0e-003;TEST_Reporting_KOMOK\",",
-                "    dbo_Variabel = Source{[Schema=\"dbo\",Item=\"Variabel\"]}[Data]",
-                "in",
-                "    dbo_Variabel"
-              ]
-            }
-          }
-        ]
-      },
-      {
-        "name": "KOMØK Indikatorer",
-        "columns": [
-          {
-            "name": "Andre",
-            "dataType": "int64",
-            "sourceColumn": "Andre"
-          },
-          {
-            "name": "Hovedtall",
-            "dataType": "int64",
-            "sourceColumn": "Hovedtall"
-          },
-          {
-            "name": "Tjenesteområder",
-            "dataType": "int64",
-            "sourceColumn": "Tjenesteområder"
-          },
-          {
-            "name": "Øko- Oversikt",
-            "dataType": "int64",
-            "sourceColumn": "Øko- Oversikt"
-          },
-          {
-            "name": "Øko- Oversikt ekskl foretak",
-            "dataType": "int64",
-            "sourceColumn": "Øko- Oversikt ekskl foretak"
-          },
-          {
-            "name": "Indeksert",
-            "dataType": "string",
-            "sourceColumn": "Indeksert"
-          }
-        ],
-        "partitions": [
-          {
-            "name": "Partition",
-            "dataView": "full",
-            "source": {
-              "type": "m",
-              "expression": [
-                "let",
-                "    Source = #\"SQL/vk-sxd0e-003;TEST_Reporting_KOMOK\",",
-                "    #\"dbo_KOMØK Indikatorer\" = Source{[Schema=\"dbo\",Item=\"KOMØK Indikatorer\"]}[Data]",
-                "in",
-                "    #\"dbo_KOMØK Indikatorer\""
-              ]
-            }
-          }
-        ],
-        "measures": [
-          {
-            "name": "Netto driftsresultat i prosent av brutto driftsinntekter",
-            "expression": [
-              "",
-              "",
-              "VAR HarBlanke = ISBLANK([Nøkkeltall - Netto Driftsresultat - AGD23 - 12364]) || ISBLANK([Nøkkeltall - Brutto driftsinntekter i alt - AGD13 - 12364])",
-              "",
-              "RETURN (",
-              "    IF(HarBlanke,",
-              "        BLANK(),",
-              "        ROUND(",
-              "            DIVIDE([Nøkkeltall - Netto Driftsresultat - AGD23 - 12364], [Nøkkeltall - Brutto driftsinntekter i alt - AGD13 - 12364]) * 100, 3",
-              "        )",
-              "    )",
-              ")"
-            ]
-          },
-          {
-            "name": "Disposisjonsfond korrigert for årets netto merforbuk i prosent av driftsinntekter",
-            "expression": [
-              "",
-              "",
-              "VAR HarBlanke = ISBLANK([Nøkkeltall - Brutto driftsinntekter i alt - AGD13 - 12364]) || ",
-              "                ISBLANK([Nøkkeltall - Disposisjonsfond (K) - 56 - 12364]) || ",
-              "                ISBLANK([Nøkkeltall - Årets merforbruk i driftsregnskapet - AGD29 - 12364])",
-              "",
-              "",
-              "RETURN (",
-              "    IF(HarBlanke,",
-              "        BLANK(),",
-              "        ROUND(",
-              "            DIVIDE([Nøkkeltall - Disposisjonsfond (K) - 56 - 12364] ",
-              "                    + [Nøkkeltall - Årets merforbruk i driftsregnskapet - AGD29 - 12364], ",
-              "                    [Nøkkeltall - Brutto driftsinntekter i alt - AGD13 - 12364]) * 100, 8",
-              "        )",
-              "    )",
-              ")"
-            ]
-          },
-          {
-            "name": "Korrigert netto driftsresultat i prosent av brutto driftsinntekter",
-            "expression": [
-              " ",
-              "",
-              "VAR HarBlanke = ISBLANK([Nøkkeltall - Brutto driftsinntekter i alt - AGD13 - 12364]) || ",
-              "                ISBLANK([Nøkkeltall - Netto Driftsresultat - AGD23 - 12364]) || ",
-              "                ISBLANK([Nøkkeltall - Avsetning til bundne fond (netto) - AGD74 - 12364])",
-              "",
-              "RETURN (",
-              "    IF(HarBlanke,",
-              "        BLANK(),",
-              "        ROUND(",
-              "            DIVIDE([Nøkkeltall - Netto Driftsresultat - AGD23 - 12364] ",
-              "                    + [Nøkkeltall - Avsetning til bundne fond (netto) - AGD74 - 12364], ",
-              "                    [Nøkkeltall - Brutto driftsinntekter i alt - AGD13 - 12364]) * 100, 8",
-              "        )",
-              "    )",
-              ")"
-            ]
-          },
-          {
-            "name": "Netto lånegjeld i prosent av brutto driftsinntekter",
-            "expression": [
-              " ",
-              "",
-              "VAR HarBlanke =",
-              "    ISBLANK([Nøkkeltall - Langsiktig gjeld ekskl. pensjonsforpliktelser - KG32 - 12364]) ||",
-              "    ISBLANK([Nøkkeltall - Utlån - 22/KG48 - 12177/13202]) ||",
-              "    ISBLANK([Nøkkeltall - Brutto driftsinntekter i alt - AGD13 - 12364])",
-              "    ",
-              "RETURN(",
-              "    IF(HarBlanke,",
-              "        BLANK(),",
-              "        ROUND(",
-              "            DIVIDE([Nøkkeltall - Langsiktig gjeld ekskl. pensjonsforpliktelser - KG32 - 12364] ",
-              "                - [Nøkkeltall - Utlån - 22/KG48 - 12177/13202] ",
-              "                - [Nøkkeltall - Ubrukte lånemidler - 9100/KG92 - 12177/13202], [Nøkkeltall - Brutto driftsinntekter i alt - AGD13 - 12364]) * 100, 8",
-              "",
-              "        )",
-              "    )",
-              ")"
-            ]
-          },
-          {
-            "name": "Renteeksponert lånegjeld i prosent av langsiktig lånegjeld",
-            "expression": [
-              "",
-              "",
-              "VAR SelectedRegion = SELECTEDVALUE(Region[Kode])",
-              "",
-              "VAR RenteeksponertGjeld = ",
-              "    CALCULATE(SUM('Alle Data'[Verdi]),",
-              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"12364\"),",
-              "        FILTER(ALL(Regnskapsbegrep[Regnskapsbegrepnavn]), [Regnskapsbegrepnavn] = \"Renteeksponert gjeld\"),",
-              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
-              "    )",
-              "",
-              "VAR OvrigeRenteeksponertGjeld = ",
-              "    CALCULATE(SUM('Alle Data'[Verdi]),",
-              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"OVR01\"),",
-              "        FILTER(ALL(Regnskapsbegrep[Regnskapsbegrepnavn]), [Regnskapsbegrepnavn] = \"Renteeksponert gjeld\"),",
-              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
-              "    )",
-              "",
-              "VAR HarBlanke = ISBLANK([Nøkkeltall - Langsiktig gjeld ekskl. pensjonsforpliktelser - KG32 - 12364]) || ISBLANK(RenteeksponertGjeld)",
-              "",
-              "VAR OvrigeHarBlanke = ISBLANK([Nøkkeltall - Langsiktig gjeld ekskl. pensjonsforpliktelser - KG32 - 12364]) || ISBLANK(OvrigeRenteeksponertGjeld)",
-              "",
-              "VAR BlankeRes =",
-              "    IF(LEFT(SelectedRegion, 3) = \"OVR\",",
-              "        OvrigeHarBlanke,",
-              "        HarBlanke",
-              "    )",
-              "",
-              "VAR Resultat = ",
-              "    IF(LEFT(SelectedRegion, 3) = \"OVR\",",
-              "        DIVIDE(OvrigeRenteeksponertGjeld, [Nøkkeltall - Langsiktig gjeld ekskl. pensjonsforpliktelser - KG32 - 12364]),",
-              "        DIVIDE(RenteeksponertGjeld, [Nøkkeltall - Langsiktig gjeld ekskl. pensjonsforpliktelser - KG32 - 12364])",
-              "    )",
-              "",
-              "RETURN(",
-              "    IF(BlankeRes,",
-              "        BLANK(),",
-              "        ROUND(Resultat * 100, 8)",
-              "    )",
-              ")",
-              ""
-            ]
-          },
-          {
-            "name": "Korrigert netto lånegjeld i prosent av brutto driftsinntekter",
-            "expression": [
-              "",
-              "",
-              "VAR ValgteAar = VALUE(SELECTEDVALUE('År'[År]))",
-              "",
-              "",
-              "VAR UdisponertIInvesteringsregnskapet = ",
-              "    CALCULATE(SUM('Alle Data'[Verdi]),",
-              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"12177\"),",
-              "        FILTER(ALL(Balansedata[Balansedatanavn]), [Balansedatanavn] = \"Udisponert i investeringsregnskapet (K)\"),",
-              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
-              "    )",
-              "",
-              "VAR OvrigeUdisponertIInvesteringsregnskapet = ",
-              "    CALCULATE(SUM('Alle Data'[Verdi]),",
-              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"OVR01\"),",
-              "        FILTER(ALL(Balansedata[Balansedatanavn]), [Balansedatanavn] = \"Udisponert i investeringsregnskapet (K)\"),",
-              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
-              "    )",
-              "",
-              "VAR Pre2020 = ",
-              "        DIVIDE(",
-              "            [Nøkkeltall - Langsiktig gjeld ekskl. pensjonsforpliktelser - KG32 - 12364] - [Nøkkeltall - Utlån - 22/KG48 - 12177/13202]",
-              "            - [Nøkkeltall - Ubrukte lånemidler - 9100/KG92 - 12177/13202] - [Nøkkeltall - Ubundet investeringsfond - 53/KG92 - 12177/13202] ",
-              "            - UdisponertIInvesteringsregnskapet - [Nøkkeltall - Udekket beløp i investeringsregnskapet - 5970/KG71 - 12177/13202], ",
-              "            [Nøkkeltall - Brutto driftsinntekter i alt - AGD13 - 12364]",
-              "        )",
-              "",
-              "VAR OvrigePre2020 = ",
-              "        DIVIDE(",
-              "            [Nøkkeltall - Langsiktig gjeld ekskl. pensjonsforpliktelser - KG32 - 12364] - [Nøkkeltall - Utlån - 22/KG48 - 12177/13202]",
-              "            - [Nøkkeltall - Ubrukte lånemidler - 9100/KG92 - 12177/13202] - [Nøkkeltall - Ubundet investeringsfond - 53/KG92 - 12177/13202] ",
-              "            - OvrigeUdisponertIInvesteringsregnskapet - [Nøkkeltall - Udekket beløp i investeringsregnskapet - 5970/KG71 - 12177/13202], ",
-              "            [Nøkkeltall - Brutto driftsinntekter i alt - AGD13 - 12364]",
-              "        )",
-              "",
-              "VAR Post2020 = ",
-              "        DIVIDE(",
-              "            [Nøkkeltall - Langsiktig gjeld ekskl. pensjonsforpliktelser - KG32 - 12364] - [Nøkkeltall - Utlån - 22/KG48 - 12177/13202]",
-              "            - [Nøkkeltall - Ubrukte lånemidler - 9100/KG92 - 12177/13202] - [Nøkkeltall - Ubundet investeringsfond - 53/KG92 - 12177/13202]",
-              "            - [Nøkkeltall - Udekket beløp i investeringsregnskapet - 5970/KG71 - 12177/13202], [Nøkkeltall - Brutto driftsinntekter i alt - AGD13 - 12364]",
-              "        )",
-              "",
-              "VAR OvrigePost2020 = ",
-              "        DIVIDE(",
-              "            [Nøkkeltall - Langsiktig gjeld ekskl. pensjonsforpliktelser - KG32 - 12364] - [Nøkkeltall - Utlån - 22/KG48 - 12177/13202]",
-              "            - [Nøkkeltall - Ubrukte lånemidler - 9100/KG92 - 12177/13202] - [Nøkkeltall - Ubundet investeringsfond - 53/KG92 - 12177/13202]",
-              "            - [Nøkkeltall - Udekket beløp i investeringsregnskapet - 5970/KG71 - 12177/13202], [Nøkkeltall - Brutto driftsinntekter i alt - AGD13 - 12364]",
-              "        )",
-              "",
-              "VAR ResultatPaaNyOgGammel = ",
-              "    IF(",
-              "        ValgteAar < 2020,",
-              "        Pre2020,",
-              "        Post2020",
-              "    )",
-              "",
-              "VAR OvrigeResultatPaaNyOgGammel = ",
-              "    IF(",
-              "        ValgteAar < 2020,",
-              "        OvrigePre2020,",
-              "        OvrigePost2020",
-              "    )",
-              "",
-              "VAR Resultat = ",
-              "    IF(LEFT([Valgt regionkode], 3) = \"OVR\",",
-              "        OvrigeResultatPaaNyOgGammel,",
-              "        ResultatPaaNyOgGammel",
-              "    )",
-              "",
-              "RETURN(",
-              "    ROUND(Resultat * 100, 8)",
-              ")"
-            ]
           },
           {
             "name": "Nøkkeltall - Utlån - 22/KG48 - 12177/13202",
@@ -1121,7 +528,7 @@
               "    )",
               "",
               "VAR Resultat = ",
-              "    IF(LEFT(SelectedRegion, 3) = \"OVR\",",
+              "    IF(LEFT([Valgt regionkode], 3) = \"OVR\" || LEFT([Valgt regionkode], 3) = \"RAL\",",
               "        OvrigeUtlaan,",
               "        Utlaan",
               "    )",
@@ -1172,6 +579,602 @@
               "    Resultat",
               ")"
             ]
+          },
+          {
+            "name": "Nøkkeltall - Renteeksponert gjeld - KG39 - 12364",
+            "expression": [
+              "",
+              "",
+              "VAR RenteeksponertGjeld = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"12364\"),",
+              "        FILTER(ALL(Regnskapsbegrep[Regnskapsbegrepnavn]), [Regnskapsbegrepnavn] = \"Renteeksponert gjeld\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
+              "    )",
+              "",
+              "VAR OvrigeRenteeksponertGjeld =",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"OVR01\"),",
+              "        FILTER(ALL(Regnskapsbegrep[Regnskapsbegrepnavn]), [Regnskapsbegrepnavn] = \"Renteeksponert gjeld\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
+              "    )",
+              "",
+              "VAR Resultat = ",
+              "    IF(LEFT([Valgt regionkode], 3) = \"RAL\" || LEFT([Valgt regionkode], 3) = \"OVR\",",
+              "        OvrigeRenteeksponertGjeld,",
+              "        RenteeksponertGjeld",
+              "    )",
+              "",
+              "RETURN(Resultat)"
+            ]
+          },
+          {
+            "name": "Nøkkeltall - Udisponert i investeringsregnskapet (K) - 5960 - 12177",
+            "expression": [
+              "",
+              "",
+              "VAR UdisponertIInvesteringsregnskapet = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"12177\"),",
+              "        FILTER(ALL(Balansedata[Balansedatanavn]), [Balansedatanavn] = \"Udisponert i investeringsregnskapet (K)\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
+              "    )",
+              "",
+              "VAR OvrigeUdisponertIInvesteringsregnskapet = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"OVR01\"),",
+              "        FILTER(ALL(Balansedata[Balansedatanavn]), [Balansedatanavn] = \"Udisponert i investeringsregnskapet (K)\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
+              "    )",
+              "",
+              "VAR Resultat =",
+              "    IF(LEFT([Valgt regionkode], 3) = \"OVR\" || LEFT([Valgt regionkode], 3) = \"RAL\",",
+              "        OvrigeUdisponertIInvesteringsregnskapet,",
+              "        UdisponertIInvesteringsregnskapet",
+              "    )",
+              "",
+              "RETURN(Resultat)"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Art",
+        "columns": [
+          {
+            "name": "Artkode",
+            "dataType": "string",
+            "sourceColumn": "Artkode"
+          },
+          {
+            "name": "Artnavn",
+            "dataType": "string",
+            "sourceColumn": "Artnavn"
+          },
+          {
+            "name": "ArtkodeNavn",
+            "dataType": "string",
+            "sourceColumn": "ArtkodeNavn"
+          },
+          {
+            "name": "Tabellkode",
+            "dataType": "string",
+            "sourceColumn": "Tabellkode"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/vk-sxd0e-002;Reporting_KOMOK\",",
+                "    dbo_Art = Source{[Schema=\"dbo\",Item=\"Art\"]}[Data]",
+                "in",
+                "    dbo_Art"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Balansedata",
+        "columns": [
+          {
+            "name": "Balansedatakode",
+            "dataType": "string",
+            "sourceColumn": "Balansedatakode"
+          },
+          {
+            "name": "Balansedatanavn",
+            "dataType": "string",
+            "sourceColumn": "Balansedatanavn"
+          },
+          {
+            "name": "BalansedatakodeNavn",
+            "dataType": "string",
+            "sourceColumn": "BalansedatakodeNavn"
+          },
+          {
+            "name": "Tabellkode",
+            "dataType": "string",
+            "sourceColumn": "Tabellkode"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/vk-sxd0e-002;Reporting_KOMOK\",",
+                "    dbo_Balansedata = Source{[Schema=\"dbo\",Item=\"Balansedata\"]}[Data]",
+                "in",
+                "    dbo_Balansedata"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Funksjon",
+        "columns": [
+          {
+            "name": "Funksjonkode",
+            "dataType": "string",
+            "sourceColumn": "Funksjonkode"
+          },
+          {
+            "name": "Funksjonnavn",
+            "dataType": "string",
+            "sourceColumn": "Funksjonnavn"
+          },
+          {
+            "name": "FunksjonkodeNavn",
+            "dataType": "string",
+            "sourceColumn": "FunksjonkodeNavn"
+          },
+          {
+            "name": "Tabellkode",
+            "dataType": "string",
+            "sourceColumn": "Tabellkode"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/vk-sxd0e-002;Reporting_KOMOK\",",
+                "    dbo_Funksjon = Source{[Schema=\"dbo\",Item=\"Funksjon\"]}[Data]",
+                "in",
+                "    dbo_Funksjon"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Kilde",
+        "columns": [
+          {
+            "name": "Kildekode",
+            "dataType": "string",
+            "sourceColumn": "Kildekode"
+          },
+          {
+            "name": "Kildenavn",
+            "dataType": "string",
+            "sourceColumn": "Kildenavn"
+          },
+          {
+            "name": "KildekodeNavn",
+            "dataType": "string",
+            "sourceColumn": "KildekodeNavn"
+          },
+          {
+            "name": "Tabellkode",
+            "dataType": "string",
+            "sourceColumn": "Tabellkode"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/vk-sxd0e-002;Reporting_KOMOK\",",
+                "    dbo_Kilde = Source{[Schema=\"dbo\",Item=\"Kilde\"]}[Data]",
+                "in",
+                "    dbo_Kilde"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Region",
+        "columns": [
+          {
+            "name": "Kode",
+            "dataType": "string",
+            "sourceColumn": "Kode"
+          },
+          {
+            "name": "Navn",
+            "dataType": "string",
+            "sourceColumn": "Navn"
+          },
+          {
+            "name": "KodeNummernavn",
+            "dataType": "string",
+            "sourceColumn": "KodeNummernavn"
+          },
+          {
+            "name": "Regionnummer",
+            "dataType": "string",
+            "sourceColumn": "Regionnummer"
+          },
+          {
+            "name": "Kategori",
+            "dataType": "string",
+            "sourceColumn": "Kategori"
+          },
+          {
+            "name": "GyldigFraDato",
+            "dataType": "dateTime",
+            "sourceColumn": "GyldigFraDato"
+          },
+          {
+            "name": "GyldigTilDato",
+            "dataType": "dateTime",
+            "sourceColumn": "GyldigTilDato"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/vk-sxd0e-002;Reporting_KOMOK\",",
+                "    dbo_Region = Source{[Schema=\"dbo\",Item=\"Region\"]}[Data]",
+                "in",
+                "    dbo_Region"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Regnskapsbegrep",
+        "columns": [
+          {
+            "name": "Regnskapsbegrepkode",
+            "dataType": "string",
+            "sourceColumn": "Regnskapsbegrepkode"
+          },
+          {
+            "name": "Regnskapsbegrepnavn",
+            "dataType": "string",
+            "sourceColumn": "Regnskapsbegrepnavn"
+          },
+          {
+            "name": "RegnskapsbegrepkodeNavn",
+            "dataType": "string",
+            "sourceColumn": "RegnskapsbegrepkodeNavn"
+          },
+          {
+            "name": "Tabellkode",
+            "dataType": "string",
+            "sourceColumn": "Tabellkode"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/vk-sxd0e-002;Reporting_KOMOK\",",
+                "    dbo_Regnskapsbegrep = Source{[Schema=\"dbo\",Item=\"Regnskapsbegrep\"]}[Data]",
+                "in",
+                "    dbo_Regnskapsbegrep"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Tabeller",
+        "columns": [
+          {
+            "name": "Tabellnummer",
+            "dataType": "string",
+            "sourceColumn": "Tabellnummer"
+          },
+          {
+            "name": "Gruppe",
+            "dataType": "string",
+            "sourceColumn": "Gruppe"
+          },
+          {
+            "name": "Kilde",
+            "dataType": "string",
+            "sourceColumn": "Kilde"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/vk-sxd0e-002;Reporting_KOMOK\",",
+                "    dbo_Tabeller = Source{[Schema=\"dbo\",Item=\"Tabeller\"]}[Data]",
+                "in",
+                "    dbo_Tabeller"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Variabel",
+        "columns": [
+          {
+            "name": "Gruppe",
+            "dataType": "string",
+            "sourceColumn": "Gruppe"
+          },
+          {
+            "name": "Variabelkode",
+            "dataType": "string",
+            "sourceColumn": "Variabelkode"
+          },
+          {
+            "name": "Variabelnavn",
+            "dataType": "string",
+            "sourceColumn": "Variabelnavn"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/vk-sxd0e-002;Reporting_KOMOK\",",
+                "    dbo_Variabel = Source{[Schema=\"dbo\",Item=\"Variabel\"]}[Data]",
+                "in",
+                "    dbo_Variabel"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "KOMØK Indikatorer",
+        "columns": [
+          {
+            "name": "Andre",
+            "dataType": "int64",
+            "sourceColumn": "Andre"
+          },
+          {
+            "name": "Hovedtall",
+            "dataType": "int64",
+            "sourceColumn": "Hovedtall"
+          },
+          {
+            "name": "Tjenesteområder",
+            "dataType": "int64",
+            "sourceColumn": "Tjenesteområder"
+          },
+          {
+            "name": "Øko- Oversikt",
+            "dataType": "int64",
+            "sourceColumn": "Øko- Oversikt"
+          },
+          {
+            "name": "Øko- Oversikt ekskl foretak",
+            "dataType": "int64",
+            "sourceColumn": "Øko- Oversikt ekskl foretak"
+          },
+          {
+            "name": "Indeksert",
+            "dataType": "string",
+            "sourceColumn": "Indeksert"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/vk-sxd0e-002;Reporting_KOMOK\",",
+                "    #\"dbo_KOMØK Indikatorer\" = Source{[Schema=\"dbo\",Item=\"KOMØK Indikatorer\"]}[Data]",
+                "in",
+                "    #\"dbo_KOMØK Indikatorer\""
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Netto driftsresultat i prosent av brutto driftsinntekter",
+            "expression": [
+              "",
+              "",
+              "VAR HarBlanke = ISBLANK([Nøkkeltall - Netto Driftsresultat - AGD23 - 12364]) || ",
+              "                ISBLANK([Nøkkeltall - Brutto driftsinntekter i alt - AGD13 - 12364])",
+              "",
+              "RETURN (",
+              "    IF(HarBlanke,",
+              "        BLANK(),",
+              "        ROUND(",
+              "            DIVIDE([Nøkkeltall - Netto Driftsresultat - AGD23 - 12364], [Nøkkeltall - Brutto driftsinntekter i alt - AGD13 - 12364]) * 100, 3",
+              "        )",
+              "    )",
+              ")"
+            ]
+          },
+          {
+            "name": "Disposisjonsfond korrigert for årets netto merforbuk i prosent av driftsinntekter",
+            "expression": [
+              "",
+              "",
+              "VAR HarBlanke = ISBLANK([Nøkkeltall - Brutto driftsinntekter i alt - AGD13 - 12364]) || ",
+              "                ISBLANK([Nøkkeltall - Disposisjonsfond (K) - 56 - 12364]) || ",
+              "                ISBLANK([Nøkkeltall - Årets merforbruk i driftsregnskapet - AGD29 - 12364])",
+              "",
+              "",
+              "RETURN (",
+              "    IF(HarBlanke,",
+              "        BLANK(),",
+              "        ROUND(",
+              "            DIVIDE([Nøkkeltall - Disposisjonsfond (K) - 56 - 12364] ",
+              "                    + [Nøkkeltall - Årets merforbruk i driftsregnskapet - AGD29 - 12364], ",
+              "                    [Nøkkeltall - Brutto driftsinntekter i alt - AGD13 - 12364]) * 100, 8",
+              "        )",
+              "    )",
+              ")"
+            ]
+          },
+          {
+            "name": "Korrigert netto driftsresultat i prosent av brutto driftsinntekter",
+            "expression": [
+              " ",
+              "",
+              "VAR HarBlanke = ISBLANK([Nøkkeltall - Brutto driftsinntekter i alt - AGD13 - 12364]) || ",
+              "                ISBLANK([Nøkkeltall - Netto Driftsresultat - AGD23 - 12364]) || ",
+              "                ISBLANK([Nøkkeltall - Avsetning til bundne fond (netto) - AGD74 - 12364])",
+              "",
+              "RETURN (",
+              "    IF(HarBlanke,",
+              "        BLANK(),",
+              "        ROUND(",
+              "            DIVIDE([Nøkkeltall - Netto Driftsresultat - AGD23 - 12364] ",
+              "                    + [Nøkkeltall - Avsetning til bundne fond (netto) - AGD74 - 12364], ",
+              "                    [Nøkkeltall - Brutto driftsinntekter i alt - AGD13 - 12364]) * 100, 8",
+              "        )",
+              "    )",
+              ")"
+            ]
+          },
+          {
+            "name": "Netto lånegjeld i prosent av brutto driftsinntekter",
+            "expression": [
+              " ",
+              "",
+              "VAR HarBlanke =",
+              "    ISBLANK([Nøkkeltall - Langsiktig gjeld ekskl. pensjonsforpliktelser - KG32 - 12364]) ||",
+              "    ISBLANK([Nøkkeltall - Utlån - 22/KG48 - 12177/13202]) ||",
+              "    ISBLANK([Nøkkeltall - Brutto driftsinntekter i alt - AGD13 - 12364]) ||",
+              "    ISBLANK([Nøkkeltall - Ubrukte lånemidler - 9100/KG92 - 12177/13202])",
+              "    ",
+              "RETURN(",
+              "    IF(HarBlanke,",
+              "        BLANK(),",
+              "        ROUND(",
+              "            DIVIDE([Nøkkeltall - Langsiktig gjeld ekskl. pensjonsforpliktelser - KG32 - 12364] ",
+              "                - [Nøkkeltall - Utlån - 22/KG48 - 12177/13202] ",
+              "                - [Nøkkeltall - Ubrukte lånemidler - 9100/KG92 - 12177/13202], ",
+              "                    [Nøkkeltall - Brutto driftsinntekter i alt - AGD13 - 12364]) * 100, 8",
+              "        )",
+              "    )",
+              ")"
+            ]
+          },
+          {
+            "name": "Renteeksponert lånegjeld i prosent av langsiktig lånegjeld",
+            "expression": [
+              "",
+              "",
+              "",
+              "VAR HarBlanke = ISBLANK([Nøkkeltall - Langsiktig gjeld ekskl. pensjonsforpliktelser - KG32 - 12364]) || ",
+              "                ISBLANK([Nøkkeltall - Renteeksponert gjeld - KG39 - 12364])",
+              "",
+              "RETURN(",
+              "    IF(HarBlanke,",
+              "        BLANK(),",
+              "        ROUND(",
+              "            DIVIDE([Nøkkeltall - Renteeksponert gjeld - KG39 - 12364], ",
+              "                    [Nøkkeltall - Langsiktig gjeld ekskl. pensjonsforpliktelser - KG32 - 12364]) * 100, ",
+              "        8)",
+              "    )",
+              ")",
+              ""
+            ]
+          },
+          {
+            "name": "Korrigert netto lånegjeld i prosent av brutto driftsinntekter",
+            "expression": [
+              "",
+              "",
+              "VAR ValgtAar = VALUE(SELECTEDVALUE('År'[År]))",
+              "",
+              "VAR Pre2020 = ",
+              "        DIVIDE(",
+              "            [Nøkkeltall - Langsiktig gjeld ekskl. pensjonsforpliktelser - KG32 - 12364] ",
+              "            - [Nøkkeltall - Utlån - 22/KG48 - 12177/13202]",
+              "            - [Nøkkeltall - Ubrukte lånemidler - 9100/KG92 - 12177/13202] ",
+              "            - [Nøkkeltall - Ubundet investeringsfond - 53/KG69 - 12177/13202] ",
+              "            - [Nøkkeltall - Udisponert i investeringsregnskapet (K) - 5960 - 12177] ",
+              "            - [Nøkkeltall - Udekket beløp i investeringsregnskapet - 5970/KG71 - 12177/13202], ",
+              "                [Nøkkeltall - Brutto driftsinntekter i alt - AGD13 - 12364]",
+              "        )",
+              "",
+              "VAR Post2020 = ",
+              "        DIVIDE(",
+              "            [Nøkkeltall - Langsiktig gjeld ekskl. pensjonsforpliktelser - KG32 - 12364] ",
+              "            - [Nøkkeltall - Utlån - 22/KG48 - 12177/13202]",
+              "            - [Nøkkeltall - Ubrukte lånemidler - 9100/KG92 - 12177/13202] ",
+              "            - [Nøkkeltall - Ubundet investeringsfond - 53/KG69 - 12177/13202]",
+              "            - [Nøkkeltall - Udekket beløp i investeringsregnskapet - 5970/KG71 - 12177/13202], ",
+              "                [Nøkkeltall - Brutto driftsinntekter i alt - AGD13 - 12364]",
+              "        )",
+              "",
+              "VAR HarBlanke = ISBLANK([Nøkkeltall - Langsiktig gjeld ekskl. pensjonsforpliktelser - KG32 - 12364]) ||",
+              "                ISBLANK([Nøkkeltall - Utlån - 22/KG48 - 12177/13202]) ||",
+              "                ISBLANK([Nøkkeltall - Ubrukte lånemidler - 9100/KG92 - 12177/13202]) ||",
+              "                ISBLANK([Nøkkeltall - Ubundet investeringsfond - 53/KG69 - 12177/13202]) ||",
+              "                ISBLANK([Nøkkeltall - Udisponert i investeringsregnskapet (K) - 5960 - 12177]) ||",
+              "                ISBLANK([Nøkkeltall - Udekket beløp i investeringsregnskapet - 5970/KG71 - 12177/13202]) ||",
+              "                ISBLANK([Nøkkeltall - Brutto driftsinntekter i alt - AGD13 - 12364])",
+              "",
+              "VAR Resultat = ",
+              "    IF(",
+              "        ValgtAar < 2020,",
+              "        Pre2020,",
+              "        Post2020",
+              "    )",
+              "",
+              "RETURN(",
+              "    ROUND(Resultat * 100, 8)",
+              ")"
+            ]
           }
         ]
       },
@@ -1197,7 +1200,7 @@
               "type": "m",
               "expression": [
                 "let",
-                "    Source = #\"SQL/vk-sxd0e-003;TEST_Reporting_KOMOK\",",
+                "    Source = #\"SQL/vk-sxd0e-002;Reporting_KOMOK\",",
                 "    dbo_År = Source{[Schema=\"dbo\",Item=\"År\"]}[Data]",
                 "in",
                 "    dbo_År"
