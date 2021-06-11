@@ -1185,6 +1185,22 @@
               "return(Resultat)"
             ],
             "displayFolder": "Grunntall"
+          },
+          {
+            "name": "Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364",
+            "expression": [
+              "",
+              "",
+              "VAR AGI1 =",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"12364\"),",
+              "        FILTER(ALL(Regnskapsbegrep[Original dimensjonskode]), [Original dimensjonskode] = \"AGI1\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
+              "    )",
+              "",
+              "RETURN(AGI1)"
+            ],
+            "displayFolder": "Grunntall"
           }
         ]
       },
@@ -2997,6 +3013,250 @@
               "        Resultat, 1",
               "    )",
               ")"
+            ]
+          },
+          {
+            "name": "Brutto investeringsutgifter - Grunnskole",
+            "expression": [
+              "",
+              "",
+              "VAR FGK8b = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"12362\"),",
+              "        FILTER(ALL(Art[Original dimensjonskode]), [Original dimensjonskode] = \"AGI5\"),",
+              "        FILTER(ALL(Funksjon[Original dimensjonskode]), [Original dimensjonskode] = \"FGK8b\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
+              "    )",
+              "",
+              "VAR Resultat = DIVIDE(FGK8b * 100, [Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364])",
+              "",
+              "RETURN(",
+              "    ROUND(",
+              "        Resultat, 2",
+              "    )",
+              ")"
+            ]
+          },
+          {
+            "name": "Brutto investeringsutgifter - VAR",
+            "expression": [
+              "",
+              "",
+              "VAR FGK14 = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"12362\"),",
+              "        FILTER(ALL(Art[Original dimensjonskode]), [Original dimensjonskode] = \"AGI5\"),",
+              "        FILTER(ALL(Funksjon[Original dimensjonskode]), [Original dimensjonskode] = \"FGK14\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
+              "    )",
+              "",
+              "VAR Resultat = DIVIDE(FGK14 * 100, [Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364])",
+              "",
+              "RETURN(ROUND(Resultat, 2))"
+            ]
+          },
+          {
+            "name": "Brutto investeringsutgifter - Helse/Omsorg",
+            "expression": [
+              "",
+              "",
+              "VAR FGK9 = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"12362\"),",
+              "        FILTER(ALL(Art[Original dimensjonskode]), [Original dimensjonskode] = \"AGI5\"),",
+              "        FILTER(ALL(Funksjon[Original dimensjonskode]), [Original dimensjonskode] = \"FGK9\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
+              "    )",
+              "",
+              "VAR Resultat = DIVIDE(FGK9 * 100, [Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364])",
+              "",
+              "RETURN(ROUND(Resultat, 2))"
+            ]
+          },
+          {
+            "name": "Brutto investeringsutgifter - Samferdsel",
+            "expression": [
+              "",
+              "",
+              "VAR FGK5 = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"12362\"),",
+              "        FILTER(ALL(Art[Original dimensjonskode]), [Original dimensjonskode] = \"AGI5\"),",
+              "        FILTER(ALL(Funksjon[Original dimensjonskode]), [Original dimensjonskode] = \"FGK5\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
+              "    )",
+              "",
+              "VAR Resultat = DIVIDE(FGK5 * 100, [Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364])",
+              "",
+              "RETURN(ROUND(Resultat, 2))"
+            ]
+          },
+          {
+            "name": "Brutto investeringsutgifter - Bolig",
+            "expression": [
+              "",
+              "",
+              "VAR FGK16 = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"12362\"),",
+              "        FILTER(ALL(Art[Original dimensjonskode]), [Original dimensjonskode] = \"AGI5\"),",
+              "        FILTER(ALL(Funksjon[Original dimensjonskode]), [Original dimensjonskode] = \"FGK16\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
+              "    )",
+              "",
+              "VAR Resultat = DIVIDE(FGK16 * 100, [Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364])",
+              "",
+              "RETURN(ROUND(Resultat, 2))"
+            ]
+          },
+          {
+            "name": "Brutto investeringsutgifter - Barnehage",
+            "expression": [
+              "",
+              "",
+              "VAR FGK7 = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"12362\"),",
+              "        FILTER(ALL(Art[Original dimensjonskode]), [Original dimensjonskode] = \"AGI5\"),",
+              "        FILTER(ALL(Funksjon[Original dimensjonskode]), [Original dimensjonskode] = \"FGK7\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
+              "    )",
+              "",
+              "VAR Resultat = DIVIDE(FGK7 * 100, [Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364])",
+              "",
+              "RETURN(ROUND(Resultat, 2))"
+            ]
+          },
+          {
+            "name": "Brutto investeringsutgifter - Kultur",
+            "expression": [
+              "",
+              "",
+              "VAR FGK2 = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"12362\"),",
+              "        FILTER(ALL(Art[Original dimensjonskode]), [Original dimensjonskode] = \"AGI5\"),",
+              "        FILTER(ALL(Funksjon[Original dimensjonskode]), [Original dimensjonskode] = \"FGK2\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
+              "    )",
+              "",
+              "VAR Resultat = DIVIDE(FGK2 * 100, [Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364])",
+              "",
+              "RETURN(ROUND(Resultat, 2))"
+            ]
+          },
+          {
+            "name": "Brutto investeringsutgifter - Admin",
+            "expression": [
+              "",
+              "",
+              "VAR FGK1b = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"12362\"),",
+              "        FILTER(ALL(Art[Original dimensjonskode]), [Original dimensjonskode] = \"AGI5\"),",
+              "        FILTER(ALL(Funksjon[Original dimensjonskode]), [Original dimensjonskode] = \"FGK1b\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
+              "    )",
+              "",
+              "VAR Resultat = DIVIDE(FGK1b * 100, [Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364])",
+              "",
+              "RETURN(ROUND(Resultat, 2))"
+            ]
+          },
+          {
+            "name": "Brutto investeringsutgifter - Næring",
+            "expression": [
+              "",
+              "",
+              "VAR FGK4 = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"12362\"),",
+              "        FILTER(ALL(Art[Original dimensjonskode]), [Original dimensjonskode] = \"AGI5\"),",
+              "        FILTER(ALL(Funksjon[Original dimensjonskode]), [Original dimensjonskode] = \"FGK4\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
+              "    )",
+              "",
+              "VAR Resultat = DIVIDE(FGK4 * 100, [Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364])",
+              "",
+              "RETURN(ROUND(Resultat, 2))"
+            ]
+          },
+          {
+            "name": "Brutto investeringsutgifter - Annet",
+            "expression": [
+              "",
+              "",
+              "VAR DIM190 = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"12362\"),",
+              "        FILTER(ALL(Art[Original dimensjonskode]), [Original dimensjonskode] = \"AGI5\"),",
+              "        FILTER(ALL(Funksjon[Original dimensjonskode]), [Original dimensjonskode] = \"190\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
+              "    )",
+              "",
+              "VAR DIM285 = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"12362\"),",
+              "        FILTER(ALL(Art[Original dimensjonskode]), [Original dimensjonskode] = \"AGI5\"),",
+              "        FILTER(ALL(Funksjon[Original dimensjonskode]), [Original dimensjonskode] = \"285\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
+              "    )",
+              "",
+              "VAR DIM290 = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"12362\"),",
+              "        FILTER(ALL(Art[Original dimensjonskode]), [Original dimensjonskode] = \"AGI5\"),",
+              "        FILTER(ALL(Funksjon[Original dimensjonskode]), [Original dimensjonskode] = \"290\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
+              "    )",
+              "",
+              "VAR FGK12 = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"12362\"),",
+              "        FILTER(ALL(Art[Original dimensjonskode]), [Original dimensjonskode] = \"AGI5\"),",
+              "        FILTER(ALL(Funksjon[Original dimensjonskode]), [Original dimensjonskode] = \"FGK12\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
+              "    )",
+              "",
+              "VAR FGK15 = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"12362\"),",
+              "        FILTER(ALL(Art[Original dimensjonskode]), [Original dimensjonskode] = \"AGI5\"),",
+              "        FILTER(ALL(Funksjon[Original dimensjonskode]), [Original dimensjonskode] = \"FGK15\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
+              "    )",
+              "",
+              "VAR FGK17 = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"12362\"),",
+              "        FILTER(ALL(Art[Original dimensjonskode]), [Original dimensjonskode] = \"AGI5\"),",
+              "        FILTER(ALL(Funksjon[Original dimensjonskode]), [Original dimensjonskode] = \"FGK17\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
+              "    )",
+              "",
+              "VAR FGK1c = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"12362\"),",
+              "        FILTER(ALL(Art[Original dimensjonskode]), [Original dimensjonskode] = \"AGI5\"),",
+              "        FILTER(ALL(Funksjon[Original dimensjonskode]), [Original dimensjonskode] = \"FGK1c\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
+              "    )",
+              "",
+              "VAR FGK3 = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"12362\"),",
+              "        FILTER(ALL(Art[Original dimensjonskode]), [Original dimensjonskode] = \"AGI5\"),",
+              "        FILTER(ALL(Funksjon[Original dimensjonskode]), [Original dimensjonskode] = \"FGK3\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
+              "    )",
+              "",
+              "VAR Korr = 106808",
+              "",
+              "VAR DimResultat = DIM190 + DIM285 + DIM290 + FGK12 + FGK15 + FGK17 + FGK1c + FGK3 + Korr",
+              "",
+              "VAR Resultat = DIVIDE(DimResultat * 100, [Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364])",
+              "",
+              "RETURN(ROUND(Resultat, 2))"
             ]
           }
         ]
