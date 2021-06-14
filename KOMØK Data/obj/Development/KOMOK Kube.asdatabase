@@ -3028,7 +3028,8 @@
               "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
               "    )",
               "",
-              "VAR Resultat = DIVIDE(FGK8b * 100, [Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364])",
+              "VAR ProsentResultat = DIVIDE(FGK8b * 100, [Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364])",
+              "VAR Resultat = DIVIDE(DIVIDE(ProsentResultat, 100) * ([Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364] * 100), [Grunntall - Brutto driftsinntekter i alt - AGD13 - 12364])",
               "",
               "RETURN(",
               "    ROUND(",
@@ -3050,7 +3051,8 @@
               "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
               "    )",
               "",
-              "VAR Resultat = DIVIDE(FGK14 * 100, [Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364])",
+              "VAR ProsentResultat = DIVIDE(FGK14 * 100, [Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364])",
+              "VAR Resultat = DIVIDE(DIVIDE(ProsentResultat, 100) * ([Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364] * 100), [Grunntall - Brutto driftsinntekter i alt - AGD13 - 12364])",
               "",
               "RETURN(ROUND(Resultat, 2))"
             ]
@@ -3068,7 +3070,8 @@
               "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
               "    )",
               "",
-              "VAR Resultat = DIVIDE(FGK9 * 100, [Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364])",
+              "VAR ProsentResultat = DIVIDE(FGK9 * 100, [Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364])",
+              "VAR Resultat = DIVIDE(DIVIDE(ProsentResultat, 100) * ([Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364] * 100), [Grunntall - Brutto driftsinntekter i alt - AGD13 - 12364])",
               "",
               "RETURN(ROUND(Resultat, 2))"
             ]
@@ -3086,7 +3089,8 @@
               "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
               "    )",
               "",
-              "VAR Resultat = DIVIDE(FGK5 * 100, [Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364])",
+              "VAR ProsentResultat = DIVIDE(FGK5 * 100, [Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364])",
+              "VAR Resultat = DIVIDE(DIVIDE(ProsentResultat, 100) * ([Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364] * 100), [Grunntall - Brutto driftsinntekter i alt - AGD13 - 12364])",
               "",
               "RETURN(ROUND(Resultat, 2))"
             ]
@@ -3104,7 +3108,8 @@
               "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
               "    )",
               "",
-              "VAR Resultat = DIVIDE(FGK16 * 100, [Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364])",
+              "VAR ProsentResultat = DIVIDE(FGK16 * 100, [Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364])",
+              "VAR Resultat = DIVIDE(DIVIDE(ProsentResultat, 100) * ([Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364] * 100), [Grunntall - Brutto driftsinntekter i alt - AGD13 - 12364])",
               "",
               "RETURN(ROUND(Resultat, 2))"
             ]
@@ -3122,7 +3127,8 @@
               "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
               "    )",
               "",
-              "VAR Resultat = DIVIDE(FGK7 * 100, [Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364])",
+              "VAR ProsentResultat = DIVIDE(FGK7 * 100, [Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364])",
+              "VAR Resultat = DIVIDE(DIVIDE(ProsentResultat, 100) * ([Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364] * 100), [Grunntall - Brutto driftsinntekter i alt - AGD13 - 12364])",
               "",
               "RETURN(ROUND(Resultat, 2))"
             ]
@@ -3140,7 +3146,8 @@
               "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
               "    )",
               "",
-              "VAR Resultat = DIVIDE(FGK2 * 100, [Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364])",
+              "VAR ProsentResultat = DIVIDE(FGK2 * 100, [Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364])",
+              "VAR Resultat = DIVIDE(DIVIDE(ProsentResultat, 100) * ([Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364] * 100), [Grunntall - Brutto driftsinntekter i alt - AGD13 - 12364])",
               "",
               "RETURN(ROUND(Resultat, 2))"
             ]
@@ -3158,7 +3165,8 @@
               "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
               "    )",
               "",
-              "VAR Resultat = DIVIDE(FGK1b * 100, [Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364])",
+              "VAR ProsentResultat = DIVIDE(FGK1b * 100, [Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364])",
+              "VAR Resultat = DIVIDE(DIVIDE(ProsentResultat, 100) * ([Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364] * 100), [Grunntall - Brutto driftsinntekter i alt - AGD13 - 12364])",
               "",
               "RETURN(ROUND(Resultat, 2))"
             ]
@@ -3176,7 +3184,9 @@
               "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
               "    )",
               "",
-              "VAR Resultat = DIVIDE(FGK4 * 100, [Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364])",
+              "VAR ProsentResultat = DIVIDE(FGK4 * 100, [Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364])",
+              "",
+              "VAR Resultat = DIVIDE(DIVIDE(ProsentResultat, 100) * ([Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364] * 100), [Grunntall - Brutto driftsinntekter i alt - AGD13 - 12364])",
               "",
               "RETURN(ROUND(Resultat, 2))"
             ]
@@ -3250,11 +3260,18 @@
               "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
               "    )",
               "",
-              "VAR Korr = 106808",
+              "VAR Korr = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"12163\"),",
+              "        FILTER(ALL(Funksjon[Original dimensjonskode]), [Original dimensjonskode] IN {\"FGF1b\", \"FGF3\", \"FGF4\", \"FGF7\", \"FGF8\"}),",
+              "        FILTER(ALL(Art[Original dimensjonskode]), [Original dimensjonskode] = \"AGI5\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
+              "    )",
               "",
               "VAR DimResultat = DIM190 + DIM285 + DIM290 + FGK12 + FGK15 + FGK17 + FGK1c + FGK3 + Korr",
+              "VAR ProsentResultat = DIVIDE(DimResultat * 100, [Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364])",
               "",
-              "VAR Resultat = DIVIDE(DimResultat * 100, [Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364])",
+              "VAR Resultat = DIVIDE(DIVIDE(ProsentResultat, 100) * ([Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364] * 100), [Grunntall - Brutto driftsinntekter i alt - AGD13 - 12364])",
               "",
               "RETURN(ROUND(Resultat, 2))"
             ]
