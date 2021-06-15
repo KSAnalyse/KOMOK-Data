@@ -1200,6 +1200,50 @@
               "RETURN(AGI1)"
             ],
             "displayFolder": "Grunntall"
+          },
+          {
+            "name": "Grunntall - Sosiale utgifter - AG35 - 12328/13218",
+            "expression": [
+              "",
+              "",
+              "VAR AG35 = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] IN {\"12328\", \"13218\"}),",
+              "        FILTER(ALL(Art[Original dimensjonskode]), [Original dimensjonskode] = \"AG35\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
+              "    )",
+              "",
+              "RETURN(AG35)"
+            ],
+            "displayFolder": "Grunntall"
+          },
+          {
+            "name": "Grunntall - Dekning av tidligere års merforbruk og udekket beløp (K) - 530/AD530 - 12328/13218",
+            "expression": [
+              "",
+              "",
+              "VAR DekningGammelTabell = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"12328\"),",
+              "        FILTER(ALL(Art[Original dimensjonskode]), [Original dimensjonskode] = \"530\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
+              "    )",
+              "",
+              "VAR DekningNyTabell = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"13218\"),",
+              "        FILTER(ALL(Art[Original dimensjonskode]), [Original dimensjonskode] = \"AD530\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
+              "    )",
+              "",
+              "VAR Resultat = ",
+              "    IF(ISBLANK(DekningGammelTabell),",
+              "        DekningNyTabell,",
+              "        DekningGammelTabell",
+              "    )",
+              "",
+              "RETURN(Resultat)"
+            ]
           }
         ]
       },
@@ -1721,7 +1765,7 @@
             ]
           },
           {
-            "name": "Inntektssammensetning - Skatt",
+            "name": "Skatt",
             "expression": [
               "",
               "",
@@ -1742,7 +1786,7 @@
             ]
           },
           {
-            "name": "Inntektssammensetning - Andre Inntekter",
+            "name": "Andre Inntekter",
             "expression": [
               "",
               "",
@@ -1820,47 +1864,14 @@
             "expression": [
               "",
               "",
-              "VAR ValgtAar = VALUE(SELECTEDVALUE('År'[År]))",
-              "",
-              "VAR EtAarSiden = 2019",
-              "VAR ToAarSiden = 2019 - 1",
-              "VAR TreAarSiden = 2019 - 2",
-              "",
-              "VAR SumTreAarSiden = ",
-              "    CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13218]",
-              "                + [Inntektssammensetning - Skatt],",
-              "                FILTER(ALL('År'[År]), [År] = FORMAT(TreAarSiden, \"####\"))",
-              "    )    ",
-              "",
-              "VAR SumToAarSiden = ",
-              "    CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13218]",
-              "                + [Inntektssammensetning - Skatt],",
-              "                FILTER(ALL('År'[År]), [År] = FORMAT(ToAarSiden, \"####\"))",
-              "    )",
-              "",
-              "",
-              "VAR SumEtAarSiden = ",
-              "     CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13218]",
-              "                + [Inntektssammensetning - Skatt],",
-              "                FILTER(ALL('År'[År]), [År] = FORMAT(EtAarSiden, \"####\"))",
-              "    )",
-              "",
-              "VAR ResultatTreAarSiden = 100",
-              "VAR ResultatToAarSiden = ResultatTreAarSiden + DIVIDE((SumToAarSiden - SumTreAarSiden) * 100, SumTreAarSiden)",
-              "VAR ResultatEtAarSiden = ResultatTreAarSiden + DIVIDE((SumEtAarSiden - SumTreAarSiden) * 100, SumTreAarSiden)",
-              "",
               "VAR Resultat = ",
-              "    SWITCH(",
-              "        ValgtAar,",
-              "        TreAarSiden, ResultatTreAarSiden,",
-              "        ToAarSiden, ResultatToAarSiden,",
-              "        EtAarSiden, ResultatEtAarSiden",
+              "    CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13218]",
+              "                + [Skatt]                ",
               "    )",
               "",
               "RETURN(",
               "    ROUND(Resultat, 1)",
-              ")",
-              "            "
+              ")"
             ]
           },
           {
@@ -1881,19 +1892,19 @@
               "",
               "VAR SumTreAarSiden = ",
               "    CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13218]",
-              "                + [Inntektssammensetning - Skatt],",
+              "                + [Skatt],",
               "                FILTER(ALL('År'[År]), [År] = FORMAT(TreAarSiden, \"####\"))",
               "    )    ",
               "",
               "VAR SumToAarSiden = ",
               "    CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13218]",
-              "                + [Inntektssammensetning - Skatt],",
+              "                + [Skatt],",
               "                FILTER(ALL('År'[År]), [År] = FORMAT(ToAarSiden, \"####\"))",
               "    )",
               "",
               "VAR SumEtAarSiden = ",
               "     CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13218]",
-              "                + [Inntektssammensetning - Skatt],",
+              "                + [Skatt],",
               "                FILTER(ALL('År'[År]), [År] = FORMAT(EtAarSiden, \"####\"))",
               "    )",
               "",
@@ -2032,7 +2043,7 @@
               "    + (DIM950 - DIM550)",
               "    + DIM530orAD350",
               "",
-              "VAR DelTo = [Handlingsrom - Avskrivninger minus Avdrag]",
+              "VAR DelTo = [Avskrivninger minus Avdrag (1000 kr)]",
               "",
               "VAR DelTre =",
               "        [Grunntall - Sum driftsinntekter (A) - AGD45 - 12328/13218]",
@@ -2255,20 +2266,20 @@
               "",
               "VAR SumTreAarSiden = ",
               "    CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13218]",
-              "                + [Inntektssammensetning - Skatt],",
+              "                + [Skatt],",
               "                FILTER(ALL('År'[År]), [År] = FORMAT(TreAarSiden, \"####\"))",
               "    )    ",
               "",
               "VAR SumToAarSiden = ",
               "    CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13218]",
-              "                + [Inntektssammensetning - Skatt],",
+              "                + [Skatt],",
               "                FILTER(ALL('År'[År]), [År] = FORMAT(ToAarSiden, \"####\"))",
               "    )",
               "",
               "",
               "VAR SumEtAarSiden = ",
               "     CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13218]",
-              "                + [Inntektssammensetning - Skatt],",
+              "                + [Skatt],",
               "                FILTER(ALL('År'[År]), [År] = FORMAT(EtAarSiden, \"####\"))",
               "    )",
               "",
@@ -2296,75 +2307,6 @@
             ]
           },
           {
-            "name": "Nominell vekst i frie inntekter - To år siden",
-            "expression": [
-              "",
-              "",
-              "VAR ValgtAar = VALUE(SELECTEDVALUE('År'[År]))",
-              "",
-              "VAR SumTreAarSiden = ",
-              "    CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13218]",
-              "                + [Inntektssammensetning - Skatt],",
-              "                FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar - 2, \"####\"))",
-              "    )    ",
-              "",
-              "VAR SumToAarSiden = ",
-              "    CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13218]",
-              "                + [Inntektssammensetning - Skatt],",
-              "                FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar - 1, \"####\"))",
-              "    )",
-              "",
-              "VAR ResultatTreAarSiden = 100",
-              "VAR Resultat = ResultatTreAarSiden + DIVIDE((SumToAarSiden - SumTreAarSiden) * 100, SumTreAarSiden)",
-              "",
-              "",
-              "RETURN(",
-              "    ROUND(Resultat, 1)",
-              ")",
-              "            "
-            ]
-          },
-          {
-            "name": "Nominell vekst i frie inntekter - Et år siden",
-            "expression": [
-              "",
-              "",
-              "VAR ValgtAar = VALUE(SELECTEDVALUE('År'[År]))",
-              "",
-              "",
-              "VAR SumTreAarSiden = ",
-              "    CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13218]",
-              "                + [Inntektssammensetning - Skatt],",
-              "                FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar - 2, \"####\"))",
-              "    )    ",
-              "",
-              "VAR SumEtAarSiden = ",
-              "    CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13218]",
-              "                + [Inntektssammensetning - Skatt],",
-              "                FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar, \"####\"))",
-              "    )",
-              "",
-              "VAR ResultatTreAarSiden = 100",
-              "VAR Resultat = ResultatTreAarSiden + DIVIDE((SumEtAarSiden - SumTreAarSiden) * 100, SumTreAarSiden)",
-              "",
-              "",
-              "RETURN(",
-              "    ROUND(Resultat, 1)",
-              ")",
-              "            "
-            ]
-          },
-          {
-            "name": "Indeks - Tre år siden",
-            "expression": [
-              "",
-              "",
-              "VAR Resultat = 100",
-              "",
-              "RETURN(100)"
-            ]
-          },
-          {
             "name": "Vekst i frie inntekter korrigert for prisstigning og befolkningsvekst - Deflatert - To År Siden",
             "expression": [
               " ",
@@ -2378,13 +2320,13 @@
               "",
               "VAR SumTreAarSiden = ",
               "    CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13218]",
-              "                + [Inntektssammensetning - Skatt],",
+              "                + [Skatt],",
               "                FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar - 2, \"####\"))",
               "    )    ",
               "",
               "VAR SumToAarSiden = ",
               "    CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13218]",
-              "                + [Inntektssammensetning - Skatt],",
+              "                + [Skatt],",
               "                FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar - 1, \"####\"))",
               "    )",
               "",
@@ -2413,13 +2355,13 @@
               "",
               "VAR SumTreAarSiden = ",
               "    CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13218]",
-              "                + [Inntektssammensetning - Skatt],",
+              "                + [Skatt],",
               "                FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar - 2, \"####\"))",
               "    )    ",
               "",
               "VAR SumEtAarSiden = ",
               "     CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13218]",
-              "                + [Inntektssammensetning - Skatt],",
+              "                + [Skatt],",
               "                FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar, \"####\"))",
               "    )",
               "",
@@ -2428,21 +2370,6 @@
               "VAR Resultat1 = DIVIDE(SumEtAarSiden, PrisvekstEtAarSiden)",
               "VAR Resultat2 = DIVIDE(SumTreAarSiden, PrisvekstTreAarSiden)",
               "VAR Resultat = DIVIDE(Resultat1 * 100, Resultat2)",
-              "",
-              "RETURN(",
-              "    ROUND(Resultat, 1)",
-              ")"
-            ]
-          },
-          {
-            "name": "Nominell vekst i frie inntekter - TEST",
-            "expression": [
-              "",
-              "",
-              "VAR Resultat = ",
-              "    CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13218]",
-              "                + [Inntektssammensetning - Skatt]                ",
-              "    )",
               "",
               "RETURN(",
               "    ROUND(Resultat, 1)",
@@ -2473,19 +2400,19 @@
               "",
               "VAR SumEtAarSiden = ",
               "    CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13218]",
-              "                + [Inntektssammensetning - Skatt],",
+              "                + [Skatt],",
               "                FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar, \"####\"))",
               "    )",
               "",
               "VAR SumToAarSiden = ",
               "     CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13218]",
-              "                + [Inntektssammensetning - Skatt],",
+              "                + [Skatt],",
               "                FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar - 1, \"####\"))",
               "    )",
               "",
               "VAR SumTreAarSiden = ",
               "    CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13218]",
-              "                + [Inntektssammensetning - Skatt],",
+              "                + [Skatt],",
               "                FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar - 2, \"####\"))",
               "    )    ",
               "",
@@ -2528,19 +2455,19 @@
               "",
               "VAR SumEtAarSiden = ",
               "    CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13218]",
-              "                + [Inntektssammensetning - Skatt],",
+              "                + [Skatt],",
               "                FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar, \"####\"))",
               "    )    ",
               "",
               "VAR SumToAarSiden = ",
               "     CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13218]",
-              "                + [Inntektssammensetning - Skatt],",
+              "                + [Skatt],",
               "                FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar - 1, \"####\"))",
               "    )",
               "",
               "VAR SumTreAarSiden = ",
               "    CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13218]",
-              "                + [Inntektssammensetning - Skatt],",
+              "                + [Skatt],",
               "                FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar - 2, \"####\"))",
               "    )    ",
               "",
@@ -2616,7 +2543,7 @@
             ]
           },
           {
-            "name": "Handlingsrom - Avskrivninger minus Avdrag",
+            "name": "Avskrivninger minus Avdrag (1000 kr)",
             "expression": [
               "",
               "",
@@ -2656,7 +2583,7 @@
             ]
           },
           {
-            "name": "Handlingsrom - Netto Drift i pst",
+            "name": "Netto Drift i pst",
             "expression": [
               "",
               "",
@@ -2666,7 +2593,7 @@
             ]
           },
           {
-            "name": "Handlingsrom - Avsetning til bundne fond i pst",
+            "name": "Avsetning til bundne fond i pst",
             "expression": [
               "",
               "",
@@ -2677,11 +2604,11 @@
             ]
           },
           {
-            "name": "Handlingsrom - Avskrivninger minus Avdrag i pst",
+            "name": "Avskrivninger minus Avdrag i pst",
             "expression": [
               "",
               "",
-              "VAR prosentResulat = DIVIDE([Handlingsrom - Avskrivninger minus Avdrag], [Grunntall - Brutto driftsinntekter i alt - AGD13 - 12364]) * 100",
+              "VAR prosentResulat = DIVIDE([Avskrivninger minus Avdrag (1000 kr)], [Grunntall - Brutto driftsinntekter i alt - AGD13 - 12364]) * 100",
               "",
               "RETURN(ROUND(prosentResulat, 1))"
             ]
@@ -2733,7 +2660,7 @@
               "    + (DIM950 - DIM550)",
               "    + DIM530orAD350",
               "",
-              "VAR DelTo = [Handlingsrom - Avskrivninger minus Avdrag]",
+              "VAR DelTo = [Avskrivninger minus Avdrag (1000 kr)]",
               "",
               "VAR DelTre =",
               "        [Grunntall - Sum driftsinntekter (A) - AGD45 - 12328/13218]",
@@ -2752,7 +2679,7 @@
             ]
           },
           {
-            "name": "Finansinntekter og finansutgifter - Renteinntekt",
+            "name": "Renteinntekt",
             "expression": [
               "",
               "",
@@ -2797,7 +2724,7 @@
             ]
           },
           {
-            "name": "Finansinntekter og finansutgifter - Utbytte",
+            "name": "Utbytte",
             "expression": [
               "",
               "",
@@ -2831,7 +2758,7 @@
             ]
           },
           {
-            "name": "Finansinntekter og finansutgifter - Gevinst",
+            "name": "Gevinst",
             "expression": [
               "",
               "",
@@ -2872,7 +2799,7 @@
             ]
           },
           {
-            "name": "Finansinntekter og finansutgifter - Renteutgifter",
+            "name": "Renteutgifter",
             "expression": [
               "",
               "",
@@ -2913,7 +2840,7 @@
             ]
           },
           {
-            "name": "Finansinntekter og finansutgifter - Tap",
+            "name": "Tap",
             "expression": [
               "",
               "",
@@ -2921,7 +2848,7 @@
             ]
           },
           {
-            "name": "Finansinntekter og finansutgifter - Netto Avdrag",
+            "name": "Netto Avdrag",
             "expression": [
               "",
               "",
@@ -2975,7 +2902,7 @@
             ]
           },
           {
-            "name": "Finansinntekter og finansutgifter - Netto finans",
+            "name": "Netto finans",
             "expression": [
               "",
               "",
@@ -3015,7 +2942,7 @@
             ]
           },
           {
-            "name": "Brutto investeringsutgifter - Grunnskole",
+            "name": "Grunnskole",
             "expression": [
               "",
               "",
@@ -3028,7 +2955,8 @@
               "    )",
               "",
               "VAR ProsentResultat = DIVIDE(FGK8b * 100, [Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364])",
-              "VAR Resultat = DIVIDE(DIVIDE(ProsentResultat, 100) * ([Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364] * 100), [Grunntall - Brutto driftsinntekter i alt - AGD13 - 12364])",
+              "VAR Resultat = DIVIDE(DIVIDE(ProsentResultat, 100) * ([Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364] * 100), ",
+              "                                [Grunntall - Brutto driftsinntekter i alt - AGD13 - 12364])",
               "",
               "RETURN(",
               "    ROUND(",
@@ -3038,7 +2966,7 @@
             ]
           },
           {
-            "name": "Brutto investeringsutgifter - VAR",
+            "name": "VAR",
             "expression": [
               "",
               "",
@@ -3057,7 +2985,7 @@
             ]
           },
           {
-            "name": "Brutto investeringsutgifter - Helse/Omsorg",
+            "name": "Helse/Omsorg",
             "expression": [
               "",
               "",
@@ -3070,13 +2998,14 @@
               "    )",
               "",
               "VAR ProsentResultat = DIVIDE(FGK9 * 100, [Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364])",
-              "VAR Resultat = DIVIDE(DIVIDE(ProsentResultat, 100) * ([Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364] * 100), [Grunntall - Brutto driftsinntekter i alt - AGD13 - 12364])",
+              "VAR Resultat = DIVIDE(DIVIDE(ProsentResultat, 100) * ([Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364] * 100), ",
+              "                                [Grunntall - Brutto driftsinntekter i alt - AGD13 - 12364])",
               "",
               "RETURN(ROUND(Resultat, 2))"
             ]
           },
           {
-            "name": "Brutto investeringsutgifter - Samferdsel",
+            "name": "Samferdsel",
             "expression": [
               "",
               "",
@@ -3095,7 +3024,7 @@
             ]
           },
           {
-            "name": "Brutto investeringsutgifter - Bolig",
+            "name": "Bolig",
             "expression": [
               "",
               "",
@@ -3108,13 +3037,14 @@
               "    )",
               "",
               "VAR ProsentResultat = DIVIDE(FGK16 * 100, [Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364])",
-              "VAR Resultat = DIVIDE(DIVIDE(ProsentResultat, 100) * ([Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364] * 100), [Grunntall - Brutto driftsinntekter i alt - AGD13 - 12364])",
+              "VAR Resultat = DIVIDE(DIVIDE(ProsentResultat, 100) * ([Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364] * 100), ",
+              "                                [Grunntall - Brutto driftsinntekter i alt - AGD13 - 12364])",
               "",
               "RETURN(ROUND(Resultat, 2))"
             ]
           },
           {
-            "name": "Brutto investeringsutgifter - Barnehage",
+            "name": "Barnehage",
             "expression": [
               "",
               "",
@@ -3127,13 +3057,14 @@
               "    )",
               "",
               "VAR ProsentResultat = DIVIDE(FGK7 * 100, [Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364])",
-              "VAR Resultat = DIVIDE(DIVIDE(ProsentResultat, 100) * ([Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364] * 100), [Grunntall - Brutto driftsinntekter i alt - AGD13 - 12364])",
+              "VAR Resultat = DIVIDE(DIVIDE(ProsentResultat, 100) * ([Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364] * 100), ",
+              "                                [Grunntall - Brutto driftsinntekter i alt - AGD13 - 12364])",
               "",
               "RETURN(ROUND(Resultat, 2))"
             ]
           },
           {
-            "name": "Brutto investeringsutgifter - Kultur",
+            "name": "Kultur",
             "expression": [
               "",
               "",
@@ -3146,13 +3077,14 @@
               "    )",
               "",
               "VAR ProsentResultat = DIVIDE(FGK2 * 100, [Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364])",
-              "VAR Resultat = DIVIDE(DIVIDE(ProsentResultat, 100) * ([Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364] * 100), [Grunntall - Brutto driftsinntekter i alt - AGD13 - 12364])",
+              "VAR Resultat = DIVIDE(DIVIDE(ProsentResultat, 100) * ([Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364] * 100), ",
+              "                                [Grunntall - Brutto driftsinntekter i alt - AGD13 - 12364])",
               "",
               "RETURN(ROUND(Resultat, 2))"
             ]
           },
           {
-            "name": "Brutto investeringsutgifter - Admin",
+            "name": "Admin",
             "expression": [
               "",
               "",
@@ -3165,13 +3097,14 @@
               "    )",
               "",
               "VAR ProsentResultat = DIVIDE(FGK1b * 100, [Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364])",
-              "VAR Resultat = DIVIDE(DIVIDE(ProsentResultat, 100) * ([Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364] * 100), [Grunntall - Brutto driftsinntekter i alt - AGD13 - 12364])",
+              "VAR Resultat = DIVIDE(DIVIDE(ProsentResultat, 100) * ([Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364] * 100), ",
+              "                [Grunntall - Brutto driftsinntekter i alt - AGD13 - 12364])",
               "",
               "RETURN(ROUND(Resultat, 2))"
             ]
           },
           {
-            "name": "Brutto investeringsutgifter - Næring",
+            "name": "Næring",
             "expression": [
               "",
               "",
@@ -3191,7 +3124,7 @@
             ]
           },
           {
-            "name": "Brutto investeringsutgifter - Annet",
+            "name": "Annet",
             "expression": [
               "",
               "",
@@ -3270,9 +3203,326 @@
               "VAR DimResultat = DIM190 + DIM285 + DIM290 + FGK12 + FGK15 + FGK17 + FGK1c + FGK3 + Korr",
               "VAR ProsentResultat = DIVIDE(DimResultat * 100, [Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364])",
               "",
-              "VAR Resultat = DIVIDE(DIVIDE(ProsentResultat, 100) * ([Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364] * 100), [Grunntall - Brutto driftsinntekter i alt - AGD13 - 12364])",
+              "VAR Resultat = DIVIDE(DIVIDE(ProsentResultat, 100) * ([Grunntall - Brutto investeringsutgifter i alt, konsern - AGI1 - 12364] * 100), ",
+              "                                [Grunntall - Brutto driftsinntekter i alt - AGD13 - 12364])",
               "",
               "RETURN(ROUND(Resultat, 2))"
+            ]
+          },
+          {
+            "name": "Nominell vekst i frie inntekter (Prosentvis vekst)",
+            "expression": [
+              "",
+              "",
+              "VAR ValgtAar = VALUE(SELECTEDVALUE('År'[År]))",
+              "",
+              "VAR SumToAarSiden = ",
+              "    CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13218]",
+              "                + [Skatt],",
+              "                FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar - 1, \"####\"))",
+              "    )    ",
+              "",
+              "VAR SumEtAarSiden = ",
+              "    CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13218]",
+              "                + [Skatt],",
+              "                FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar - 0, \"####\"))",
+              "    )",
+              "",
+              "VAR Resultat = DIVIDE((SumEtAarSiden - SumToAarSiden) * 100, SumToAarSiden)",
+              "",
+              "RETURN(ROUND(Resultat, 1))",
+              ""
+            ]
+          },
+          {
+            "name": "Skatt (prosentvis vekst)",
+            "expression": [
+              "",
+              "",
+              "VAR ValgtAar = VALUE(SELECTEDVALUE('År'[År]))",
+              "",
+              "VAR SumEtAarSiden = ",
+              "    CALCULATE([Skatt],",
+              "                FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar, \"####\"))",
+              "    )    ",
+              "",
+              "VAR SumToAarSiden = ",
+              "    CALCULATE([Skatt],",
+              "                FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar - 1, \"####\"))",
+              "    )",
+              "",
+              "VAR Resultat = DIVIDE((SumEtAarSiden - SumToAarSiden) * 100, SumToAarSiden)",
+              "",
+              "RETURN(ROUND(Resultat, 1))"
+            ]
+          },
+          {
+            "name": "Skatt på inntekt og formue/inntekts- og formueskatt (prosentvis vekst)",
+            "expression": [
+              "",
+              "",
+              "VAR ValgtAar = VALUE(SELECTEDVALUE('År'[År]))",
+              "",
+              "VAR A870ogAGD75EtAarSiden = ",
+              "    CALCULATE([Grunntall - Skatt på inntekt og formue/Inntekts- og formueskatt - A870/AGD75 - 12328/13218],",
+              "                FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar, \"####\"))",
+              "    )    ",
+              "",
+              "VAR A870ogAGD75ToAarSiden = ",
+              "    CALCULATE([Grunntall - Skatt på inntekt og formue/Inntekts- og formueskatt - A870/AGD75 - 12328/13218],",
+              "                FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar - 1, \"####\"))",
+              "    )",
+              "",
+              "VAR Resultat = DIVIDE((A870ogAGD75EtAarSiden - A870ogAGD75ToAarSiden) * 100, A870ogAGD75ToAarSiden)",
+              "",
+              "RETURN(ROUND(Resultat, 1))"
+            ]
+          },
+          {
+            "name": "Eiendomskatt totalt (prosentvis vekst)",
+            "expression": [
+              "",
+              "",
+              "VAR ValgtAar = VALUE(SELECTEDVALUE('År'[År]))",
+              "",
+              "VAR AG10EtAarSiden = ",
+              "    CALCULATE([Grunntall - Eiendomsskatt totalt - AG10 - 12328/13218],",
+              "                FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar, \"####\"))",
+              "    )    ",
+              "",
+              "VAR AG10ToAarSiden = ",
+              "    CALCULATE([Grunntall - Eiendomsskatt totalt - AG10 - 12328/13218],",
+              "                FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar - 1, \"####\"))",
+              "    )",
+              "",
+              "VAR Resultat = DIVIDE((AG10EtAarSiden - AG10ToAarSiden) * 100, AG10ToAarSiden)",
+              "",
+              "RETURN(ROUND(Resultat, 1))"
+            ]
+          },
+          {
+            "name": "Rammetilskudd (prosentvis vekst)",
+            "expression": [
+              "",
+              "",
+              "VAR ValgtAar = VALUE(SELECTEDVALUE('År'[År]))",
+              "",
+              "VAR A800EtAarSiden = ",
+              "    CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13218],",
+              "                FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar, \"####\"))",
+              "    )    ",
+              "",
+              "VAR A800ToAarSiden = ",
+              "    CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13218],",
+              "                FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar - 1, \"####\"))",
+              "    )",
+              "",
+              "VAR Resultat = DIVIDE((A800EtAarSiden - A800ToAarSiden) * 100, A800ToAarSiden)",
+              "",
+              "RETURN(ROUND(Resultat, 1))"
+            ]
+          },
+          {
+            "name": "Andre skatteinntekter (prosentvis vekst)",
+            "expression": [
+              "",
+              "",
+              "VAR ValgtAar = VALUE(SELECTEDVALUE('År'[År]))",
+              "",
+              "VAR AG76og877EtAarSiden = ",
+              "    CALCULATE([Grunntall - Andre direkte og indirekte skatter/Andre skatteinntekter - 877/AGD76 - 12328/13218 v2],",
+              "                FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar, \"####\"))",
+              "    )    ",
+              "",
+              "VAR AG76og877ToAarSiden = ",
+              "    CALCULATE([Grunntall - Andre direkte og indirekte skatter/Andre skatteinntekter - 877/AGD76 - 12328/13218 v2],",
+              "                FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar - 1, \"####\"))",
+              "    )",
+              "",
+              "VAR Resultat = DIVIDE((AG76og877EtAarSiden - AG76og877ToAarSiden) * 100, AG76og877ToAarSiden)",
+              "",
+              "RETURN(ROUND(Resultat, 1))"
+            ]
+          },
+          {
+            "name": "Utgifter til lønn (1000 kr)",
+            "expression": [
+              "",
+              "",
+              "VAR AG15 = [Grunntall - Lønnsutgifter og oppgavepliktige godtgjørelser - AG15 - 12328/13218]",
+              "    ",
+              "",
+              "RETURN(ROUND(AG15, 0))"
+            ]
+          },
+          {
+            "name": "Utgifter til lønn (prosentvis vekst)",
+            "expression": [
+              "",
+              "",
+              "VAR ValgtAar = VALUE(SELECTEDVALUE('År'[År]))",
+              "",
+              "VAR AG15EtAarSiden = ",
+              "    CALCULATE([Grunntall - Lønnsutgifter og oppgavepliktige godtgjørelser - AG15 - 12328/13218],",
+              "                FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar, \"####\"))",
+              "    )    ",
+              "",
+              "VAR AG15ToAarSiden = ",
+              "    CALCULATE([Grunntall - Lønnsutgifter og oppgavepliktige godtgjørelser - AG15 - 12328/13218],",
+              "                FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar - 1, \"####\"))",
+              "    )",
+              "",
+              "VAR Resultat = DIVIDE((AG15EtAarSiden - AG15ToAarSiden) * 100, AG15ToAarSiden)",
+              "",
+              "RETURN(ROUND(Resultat, 1))"
+            ]
+          },
+          {
+            "name": "Sosiale utgifter (1000 kr)",
+            "expression": [
+              "",
+              "",
+              "VAR Resultat = [Grunntall - Sosiale utgifter - AG35 - 12328/13218]",
+              "",
+              "RETURN(ROUND(Resultat, 0))"
+            ]
+          },
+          {
+            "name": "Sosiale utgifter (prosentvis vekst)",
+            "expression": [
+              "",
+              "",
+              "VAR ValgtAar = VALUE(SELECTEDVALUE('År'[År]))",
+              "",
+              "VAR AG35EtAarSiden = ",
+              "    CALCULATE([Grunntall - Sosiale utgifter - AG35 - 12328/13218],",
+              "                FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar, \"####\"))",
+              "    )    ",
+              "",
+              "VAR AG35ToAarSiden = ",
+              "    CALCULATE([Grunntall - Sosiale utgifter - AG35 - 12328/13218],",
+              "                FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar - 1, \"####\"))",
+              "    )",
+              "",
+              "VAR Resultat = DIVIDE((AG35EtAarSiden - AG35ToAarSiden) * 100, AG35ToAarSiden)",
+              "",
+              "RETURN(ROUND(Resultat, 1))"
+            ]
+          },
+          {
+            "name": "Lønn inkl. sosiale utgifter (1000 kr)",
+            "expression": [
+              "",
+              "",
+              "VAR Resultat = [Grunntall - Lønnsutgifter og oppgavepliktige godtgjørelser - AG15 - 12328/13218]",
+              "                        + [Grunntall - Sosiale utgifter - AG35 - 12328/13218]",
+              "",
+              "RETURN(ROUND(Resultat, 0))"
+            ]
+          },
+          {
+            "name": "Lønn inkl. sosiale utgifter (prosentvis vekst)",
+            "expression": [
+              "",
+              "",
+              "VAR ValgtAar = VALUE(SELECTEDVALUE('År'[År]))",
+              "",
+              "VAR SumEtAarSiden = ",
+              "    CALCULATE([Grunntall - Lønnsutgifter og oppgavepliktige godtgjørelser - AG15 - 12328/13218]",
+              "                + [Grunntall - Sosiale utgifter - AG35 - 12328/13218],",
+              "                FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar, \"####\"))",
+              "    )    ",
+              "",
+              "VAR SumToAarSiden = ",
+              "    CALCULATE([Grunntall - Lønnsutgifter og oppgavepliktige godtgjørelser - AG15 - 12328/13218]",
+              "                + [Grunntall - Sosiale utgifter - AG35 - 12328/13218],",
+              "                FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar - 1, \"####\"))",
+              "    )",
+              "",
+              "VAR Resultat = DIVIDE((SumEtAarSiden - SumToAarSiden) * 100, SumToAarSiden)",
+              "",
+              "RETURN(ROUND(Resultat, 1))"
+            ]
+          },
+          {
+            "name": "Netto Driftsresultat (1000 kr)",
+            "expression": [
+              "",
+              "",
+              "VAR Resultat = [Grunntall - Netto Driftsresultat - AGD23 - 12364]",
+              "",
+              "RETURN(ROUND(Resultat, 0))"
+            ]
+          },
+          {
+            "name": "Avsetning til bundne fond (netto)",
+            "expression": [
+              "",
+              "",
+              "VAR Resultat = [Grunntall - Avsetning til bundne fond (netto) - AGD74 - 12364]",
+              "",
+              "RETURN(ROUND(Resultat, 0))"
+            ]
+          },
+          {
+            "name": "Rammetilskudd",
+            "expression": [
+              "",
+              "",
+              "VAR Resultat = [Grunntall - Rammetilskudd - A800 - 12328/13218]",
+              "",
+              "RETURN(ROUND(Resultat, 0))"
+            ]
+          },
+          {
+            "name": "Andre statlige overføringer",
+            "expression": [
+              "",
+              "",
+              "VAR Resultat = [Grunntall - Andre statlige overføringer - A810/AGD77 - 12328/13218]",
+              "",
+              "RETURN(ROUND(Resultat, 0))"
+            ]
+          },
+          {
+            "name": "Dekning tidligere års merforbruk (1000 kr)",
+            "expression": [
+              "",
+              "",
+              "VAR Resultat = -[Grunntall - Dekning av tidligere års merforbruk og udekket beløp (K) - 530/AD530 - 12328/13218]",
+              "",
+              "RETURN(ROUND(Resultat, 1))"
+            ]
+          },
+          {
+            "name": "Dekning tidligere års merforbruk (prosentvis vekst)",
+            "expression": [
+              "",
+              "",
+              "VAR Resultat = DIVIDE(-[Grunntall - Dekning av tidligere års merforbruk og udekket beløp (K) - 530/AD530 - 12328/13218] * 100,",
+              "                        [Grunntall - Sum driftsinntekter (A) - AGD45 - 12328/13218])",
+              "",
+              "RETURN(ROUND(Resultat, 1))"
+            ]
+          },
+          {
+            "name": "Skatt (1000 kr)",
+            "expression": [
+              "",
+              "",
+              "VAR Resultat = [Skatt]",
+              "",
+              "RETURN(ROUND(Resultat, 0))"
+            ]
+          },
+          {
+            "name": "Rammetilskudd (1000 kr)",
+            "expression": [
+              "",
+              "",
+              "VAR Resultat = [Rammetilskudd]",
+              "",
+              "RETURN(ROUND(Resultat, 0))"
             ]
           }
         ]
