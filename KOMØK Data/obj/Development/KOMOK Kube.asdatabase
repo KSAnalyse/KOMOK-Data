@@ -1127,47 +1127,7 @@
             "displayFolder": "Grunntall"
           },
           {
-            "name": "Grunntall - Befolkning - tre år siden",
-            "expression": [
-              "",
-              "",
-              "VAR ValgtAar = VALUE(LEFT(SELECTEDVALUE('År'[År]), 4))",
-              "",
-              "VAR TreAarSiden = FORMAT(ValgtAar - 2, \"####K3\")",
-              "",
-              "VAR Resultat = ",
-              "    CALCULATE(SUM('Alle Data'[Verdi]),",
-              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"01222\"),",
-              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Befolkning ved inngangen av kvartalet\"),",
-              "        FILTER(ALL('År'[År]), [År] = TreAarSiden)",
-              "    )",
-              "",
-              "return(Resultat)"
-            ],
-            "displayFolder": "Grunntall"
-          },
-          {
-            "name": "Grunntall - Befolkning - to år siden",
-            "expression": [
-              "",
-              "",
-              "VAR ValgtAar = VALUE(LEFT(SELECTEDVALUE('År'[År]), 4))",
-              "",
-              "VAR ToAarSiden = FORMAT(ValgtAar - 1, \"####K3\")",
-              "",
-              "VAR Resultat = ",
-              "    CALCULATE(SUM('Alle Data'[Verdi]),",
-              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"01222\"),",
-              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Befolkning ved inngangen av kvartalet\"),",
-              "        FILTER(ALL('År'[År]), [År] = ToAarSiden)",
-              "    )",
-              "",
-              "return(Resultat)"
-            ],
-            "displayFolder": "Grunntall"
-          },
-          {
-            "name": "Grunntall - Befolkning - et år siden",
+            "name": "Befolkning",
             "expression": [
               "",
               "",
@@ -1182,7 +1142,7 @@
               "        FILTER(ALL('År'[År]), [År] = EtAarSiden)",
               "    )",
               "",
-              "return(Resultat)"
+              "RETURN(Resultat)"
             ],
             "displayFolder": "Grunntall"
           },
@@ -1245,6 +1205,38 @@
               "",
               "RETURN(Resultat)"
             ]
+          },
+          {
+            "name": "Deflator",
+            "description": "Grunntall",
+            "expression": [
+              "",
+              "",
+              "VAR Deflator = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"DLO01\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Deflator\")",
+              "    )",
+              "",
+              "RETURN(Deflator)"
+            ],
+            "displayFolder": "Grunntall"
+          },
+          {
+            "name": "Lønnsvekst",
+            "description": "Grunntall",
+            "expression": [
+              "",
+              "",
+              "VAR Lonnsvekst = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"DLO01\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Lønnsvekst\")",
+              "    )",
+              "",
+              "RETURN(Lonnsvekst)"
+            ],
+            "displayFolder": "Grunntall"
           }
         ]
       },
@@ -1883,57 +1875,57 @@
               "",
               "VAR ValgtAar = VALUE(SELECTEDVALUE('År'[År]))",
               "",
-              "VAR EtAarSiden = 2019",
-              "VAR ToAarSiden = 2019 - 1",
-              "VAR TreAarSiden = 2019 - 2",
-              "",
-              "VAR PrisvekstEtAarSiden = 1.053",
-              "VAR PrisvekstToAarSiden = 1.024",
-              "VAR PrisvekstTreAarSiden = 1.000",
-              "",
-              "VAR SumTreAarSiden = ",
-              "    CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13218]",
-              "                + [Skatt],",
-              "                FILTER(ALL('År'[År]), [År] = FORMAT(TreAarSiden, \"####\"))",
-              "    )    ",
-              "",
-              "VAR SumToAarSiden = ",
-              "    CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13218]",
-              "                + [Skatt],",
-              "                FILTER(ALL('År'[År]), [År] = FORMAT(ToAarSiden, \"####\"))",
+              "VAR DeflatertProsentToAarSiden = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"DLO01\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Deflator\"),",
+              "        FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar, \"####\"))",
               "    )",
               "",
-              "VAR SumEtAarSiden = ",
-              "     CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13218]",
-              "                + [Skatt],",
-              "                FILTER(ALL('År'[År]), [År] = FORMAT(EtAarSiden, \"####\"))",
+              "VAR DeflatertProsentEtAarSiden = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"DLO01\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Deflator\"),",
+              "        FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar - 1, \"####\"))",
               "    )",
               "",
-              "VAR ResultatTreAarSiden = 100",
-              "VAR ResultatToAarSiden = ResultatTreAarSiden + DIVIDE((DIVIDE(SumToAarSiden, PrisvekstToAarSiden) - DIVIDE(SumTreAarSiden, PrisvekstTreAarSiden)) * 100,",
-              "                                               DIVIDE(SumTreAarSiden, PrisvekstTreAarSiden))",
+              "VAR DeflatertToAarSiden = 1.0 + DIVIDE(DeflatertProsentToAarSiden, 100)",
+              "VAR DeflatertEtAarSiden = 1.0 + DIVIDE(DeflatertProsentEtAarSiden, 100)",
               "",
-              "VAR ResultatEtAarSiden = ResultatTreAarSiden + DIVIDE((DIVIDE(SumEtAarSiden, PrisvekstEtAarSiden) - DIVIDE(SumToAarSiden, PrisvekstToAarSiden)) * 100,",
-              "                                               DIVIDE(SumToAarSiden, PrisvekstToAarSiden))",
+              "VAR DeflatertVekstEtAarSiden = DeflatertToAarSiden * DeflatertEtAarSiden",
               "",
-              "VAR Resultat = ",
-              "    SWITCH(",
-              "        ValgtAar,",
-              "        TreAarSiden, ResultatTreAarSiden,",
-              "        ToAarSiden, ResultatToAarSiden,",
-              "        EtAarSiden, ResultatEtAarSiden",
+              "",
+              "VAR FrieInntekter = ",
+              "    CALCULATE([Nominell vekst i frie inntekter],",
+              "        FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar, \"####\"))",
               "    )",
               "",
+              "VAR DeflatertVerdi2017 = FrieInntekter",
+              "VAR DeflatertVerdi2018 = DIVIDE(FrieInntekter, DeflatertToAarSiden)",
+              "VAR DeflatertVerdi2019 = DIVIDE(FrieInntekter, DeflatertVekstEtAarSiden)",
+              "    ",
+              "VAR Resultat =",
+              "    IF(ValgtAar = ValgtAar - 2,",
+              "        FrieInntekter,",
+              "        IF(ValgtAar = ValgtAar,",
+              "            DeflatertVerdi2018,",
+              "            IF(ValgtAar = ValgtAar + 1,",
+              "                DeflatertVerdi2019",
+              "            )",
+              "        )",
+              "    )",
               "",
-              "RETURN(",
-              "    ROUND(Resultat, 1)",
-              ")"
+              "RETURN(Resultat)"
             ]
           },
           {
             "name": "Vekst i lønnsutgifter (eks. sosiale utgifter) i faste priser",
             "expression": [
               "",
+              "",
+              "VAR DERP = 0",
+              "",
+              "RETURN(DERP)",
               ""
             ]
           },
@@ -2044,7 +2036,7 @@
               "    + (DIM950 - DIM550)",
               "    + DIM530orAD350",
               "",
-              "VAR DelTo = [Avskrivninger minus Avdrag (1000 kr)]",
+              "VAR DelTo = [Avskrivninger minus avdrag (1000 kr)]",
               "",
               "VAR DelTre =",
               "        [Grunntall - Sum driftsinntekter (A) - AGD45 - 12328/13218]",
@@ -2248,132 +2240,42 @@
             "expression": [
               " ",
               "",
-              "",
               "VAR ValgtAar = VALUE(SELECTEDVALUE('År'[År]))",
               "",
-              "VAR BefolkningsvekstEtAarSiden = 1.000 + DIVIDE(([Grunntall - Befolkning - et år siden] - [Grunntall - Befolkning - to år siden]),",
+              "VAR BefolkningsvekstEtAarSiden = 1.000 + DIVIDE(([Grunntall - Befolkning - 01222] - [Grunntall - Befolkning - to år siden]),",
               "                                            [Grunntall - Befolkning - to år siden])",
+              "",
               "VAR BefolkningsvekstToAarSiden = 1.000 + DIVIDE(([Grunntall - Befolkning - to år siden] - [Grunntall - Befolkning - tre år siden]),",
               "                                            [Grunntall - Befolkning - tre år siden])",
-              "VAR BefolkningsvekstForholdstallTreAarSiden= 1.000",
               "",
-              "VAR BefolkningsvekstForholdstallToAarSiden = BefolkningsvekstForholdstallTreAarSiden * BefolkningsvekstToAarSiden",
               "",
-              "VAR BefolkningsvekstForholdstallEtAarSiden = BefolkningsvekstForholdstallToAarSiden * BefolkningsvekstEtAarSiden",
+              "VAR BefolkningsvekstForholdstallEtAarSiden = BefolkningsvekstToAarSiden * BefolkningsvekstEtAarSiden",
               "",
               "VAR EtAarSiden = 2019",
               "VAR ToAarSiden = 2019 - 1",
               "VAR TreAarSiden = 2019 - 2",
               "",
-              "VAR SumTreAarSiden = ",
-              "    CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13218]",
-              "                + [Skatt],",
-              "                FILTER(ALL('År'[År]), [År] = FORMAT(TreAarSiden, \"####\"))",
-              "    )    ",
-              "",
-              "VAR SumToAarSiden = ",
-              "    CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13218]",
-              "                + [Skatt],",
-              "                FILTER(ALL('År'[År]), [År] = FORMAT(ToAarSiden, \"####\"))",
+              "VAR Deflatert = ",
+              "    CALCULATE([Vekst i frie inntekter korrigert for prisstigning og befolkningsvekst - Deflatert],",
+              "                FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar, \"####\"))",
               "    )",
               "",
-              "",
-              "VAR SumEtAarSiden = ",
-              "     CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13218]",
-              "                + [Skatt],",
-              "                FILTER(ALL('År'[År]), [År] = FORMAT(EtAarSiden, \"####\"))",
-              "    )",
-              "",
-              "VAR ResultatTreAarSiden = 100",
-              "VAR ResultatToAarSiden = ResultatTreAarSiden + DIVIDE((DIVIDE(SumToAarSiden, BefolkningsvekstForholdstallToAarSiden) ",
-              "                                             - DIVIDE(SumTreAarSiden, BefolkningsvekstForholdstallTreAarSiden)) * 100, ",
-              "                                               DIVIDE(SumTreAarSiden, BefolkningsvekstForholdstallTreAarSiden))",
-              "",
-              "VAR ResultatEtAarSiden = ResultatTreAarSiden + DIVIDE((DIVIDE(SumEtAarSiden, BefolkningsvekstForholdstallEtAarSiden)",
-              "                                             - DIVIDE(SumToAarSiden, BefolkningsvekstForholdstallToAarSiden)) * 100, ",
-              "                                               DIVIDE(SumToAarSiden, BefolkningsvekstForholdstallToAarSiden))",
+              "VAR ResultatTreAarSiden = Deflatert",
+              "VAR ResultatToAarSiden = DIVIDE(Deflatert, BefolkningsvekstEtAarSiden)",
+              "VAR ResultatEtAarSiden = DIVIDE(Deflatert, BefolkningsvekstForholdstallEtAarSiden)",
               "",
               "VAR Resultat = ",
               "    SWITCH(",
               "        ValgtAar,",
-              "        TreAarSiden, ResultatTreAarSiden,",
-              "        ToAarSiden, ResultatToAarSiden,",
-              "        EtAarSiden, ResultatEtAarSiden",
+              "        2017, ResultatTreAarSiden,",
+              "        2018, ResultatToAarSiden,",
+              "        2019, ResultatEtAarSiden",
               "    )",
               "",
               "",
-              "RETURN(",
-              "    ROUND(Resultat, 1)",
-              ")"
-            ]
-          },
-          {
-            "name": "Vekst i frie inntekter korrigert for prisstigning og befolkningsvekst - Deflatert - To År Siden",
-            "expression": [
-              " ",
-              "",
-              "",
-              "VAR ValgtAar = VALUE(SELECTEDVALUE('År'[År]))",
-              "",
-              "VAR PrisvekstEtAarSiden = 1.064",
-              "VAR PrisvekstToAarSiden = 1.031",
-              "VAR PrisvekstTreAarSiden = 1.000",
-              "",
-              "VAR SumTreAarSiden = ",
-              "    CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13218]",
-              "                + [Skatt],",
-              "                FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar - 2, \"####\"))",
-              "    )    ",
-              "",
-              "VAR SumToAarSiden = ",
-              "    CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13218]",
-              "                + [Skatt],",
-              "                FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar - 1, \"####\"))",
-              "    )",
-              "",
-              "VAR ResultatTreAarSiden = 100",
-              "VAR Resultat1 = DIVIDE(SumToAarSiden, PrisvekstToAarSiden)",
-              "VAR Resultat2 = DIVIDE(SumTreAarSiden, PrisvekstTreAarSiden)",
-              "VAR Resultat = DIVIDE(Resultat1 * 100, Resultat2)",
-              "",
               "",
               "RETURN(",
-              "    ROUND(Resultat, 1)",
-              ")"
-            ]
-          },
-          {
-            "name": "Vekst i frie inntekter korrigert for prisstigning og befolkningsvekst - Deflatert - Et År Siden",
-            "expression": [
-              " ",
-              "",
-              "",
-              "VAR ValgtAar = VALUE(SELECTEDVALUE('År'[År]))",
-              "",
-              "VAR PrisvekstEtAarSiden = 1.064",
-              "VAR PrisvekstToAarSiden = 1.031",
-              "VAR PrisvekstTreAarSiden = 1.000",
-              "",
-              "VAR SumTreAarSiden = ",
-              "    CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13218]",
-              "                + [Skatt],",
-              "                FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar - 2, \"####\"))",
-              "    )    ",
-              "",
-              "VAR SumEtAarSiden = ",
-              "     CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13218]",
-              "                + [Skatt],",
-              "                FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar, \"####\"))",
-              "    )",
-              "",
-              "VAR ResultatTreAarSiden = 100",
-              "",
-              "VAR Resultat1 = DIVIDE(SumEtAarSiden, PrisvekstEtAarSiden)",
-              "VAR Resultat2 = DIVIDE(SumTreAarSiden, PrisvekstTreAarSiden)",
-              "VAR Resultat = DIVIDE(Resultat1 * 100, Resultat2)",
-              "",
-              "RETURN(",
-              "    ROUND(Resultat, 1)",
+              "    ROUND(Resultat, 0)",
               ")"
             ]
           },
@@ -2385,7 +2287,7 @@
               "",
               "VAR ValgtAar = VALUE(SELECTEDVALUE('År'[År]))",
               "",
-              "VAR BefolkningsvekstEtAarSiden = 1.000 + DIVIDE(([Grunntall - Befolkning - et år siden] - [Grunntall - Befolkning - to år siden]),",
+              "VAR BefolkningsvekstEtAarSiden = 1.000 + DIVIDE(([Grunntall - Befolkning - 01222] - [Grunntall - Befolkning - to år siden]),",
               "                                            [Grunntall - Befolkning - to år siden])",
               "VAR BefolkningsvekstToAarSiden = 1.000 + DIVIDE(([Grunntall - Befolkning - to år siden] - [Grunntall - Befolkning - tre år siden]),",
               "                                            [Grunntall - Befolkning - tre år siden])",
@@ -2438,7 +2340,7 @@
               "",
               "VAR ValgtAar = VALUE(SELECTEDVALUE('År'[År]))",
               "",
-              "VAR BefolkningsvekstEtAarSiden = 1.000 + DIVIDE(([Grunntall - Befolkning - et år siden] - [Grunntall - Befolkning - to år siden]),",
+              "VAR BefolkningsvekstEtAarSiden = 1.000 + DIVIDE(([Grunntall - Befolkning - 01222] - [Grunntall - Befolkning - to år siden]),",
               "                                            [Grunntall - Befolkning - to år siden])",
               "",
               "VAR BefolkningsvekstToAarSiden = 1.000 + DIVIDE(([Grunntall - Befolkning - to år siden] - [Grunntall - Befolkning - tre år siden]),",
@@ -2486,7 +2388,7 @@
             ]
           },
           {
-            "name": "Vekst i lønnsutfigter (eks. sosiale utgifter) i faste priser - To År Siden",
+            "name": "Vekst i lønnsutgifter (eks. sosiale utgifter) i faste priser - To År Siden",
             "expression": [
               " ",
               "",
@@ -2515,7 +2417,7 @@
             ]
           },
           {
-            "name": "Vekst i lønnsutfigter (eks. sosiale utgifter) i faste priser - Et År Siden",
+            "name": "Vekst i lønnsutgifter (eks. sosiale utgifter) i faste priser - Et År Siden",
             "expression": [
               " ",
               "",
@@ -2544,7 +2446,7 @@
             ]
           },
           {
-            "name": "Avskrivninger minus Avdrag (1000 kr)",
+            "name": "Avskrivninger minus avdrag (1000 kr)",
             "expression": [
               "",
               "",
@@ -2594,7 +2496,7 @@
             ]
           },
           {
-            "name": "Avsetning til bundne fond i pst",
+            "name": "Avsetning til bundne fond i prosent av brutto driftsinntekter",
             "expression": [
               "",
               "",
@@ -2605,17 +2507,17 @@
             ]
           },
           {
-            "name": "Avskrivninger minus Avdrag i pst",
+            "name": "Avskrivninger minus avdrag i prosent av brutto driftsinntekter",
             "expression": [
               "",
               "",
-              "VAR prosentResulat = DIVIDE([Avskrivninger minus Avdrag (1000 kr)], [Grunntall - Brutto driftsinntekter i alt - AGD13 - 12364]) * 100",
+              "VAR prosentResulat = DIVIDE([Avskrivninger minus avdrag (1000 kr)], [Grunntall - Brutto driftsinntekter i alt - AGD13 - 12364]) * 100",
               "",
               "RETURN(ROUND(prosentResulat, 1))"
             ]
           },
           {
-            "name": "Handlingsrom (justert netto driftsresultat i Beløp (1000 kr) av driftsinntekter)",
+            "name": "Handlingsrom (justert netto driftsresultat av driftsinntekter) (1 000 kr)",
             "expression": [
               "",
               "",
@@ -2661,7 +2563,7 @@
               "    + (DIM950 - DIM550)",
               "    + DIM530orAD350",
               "",
-              "VAR DelTo = [Avskrivninger minus Avdrag (1000 kr)]",
+              "VAR DelTo = [Avskrivninger minus avdrag (1000 kr)]",
               "",
               "VAR DelTre =",
               "        [Grunntall - Sum driftsinntekter (A) - AGD45 - 12328/13218]",
@@ -2759,7 +2661,7 @@
             ]
           },
           {
-            "name": "Gevinst",
+            "name": "Gevinst - Tap",
             "expression": [
               "",
               "",
@@ -2788,7 +2690,7 @@
               "",
               "VAR Resultat = ",
               "    IF(ValgtAar < 2020,",
-              "        DIVIDE(DIM909 * 100, [Grunntall - Sum driftsinntekter (A) - AGD45 - 12328/13218]),",
+              "        DIVIDE((DIM909 - DIM509) * 100, [Grunntall - Sum driftsinntekter (A) - AGD45 - 12328/13218]),",
               "        DIVIDE(AGD83 * 100, [Grunntall - Sum driftsinntekter (A) - AGD45 - 12328/13218])",
               "    )",
               "",
@@ -2849,7 +2751,7 @@
             ]
           },
           {
-            "name": "Netto Avdrag",
+            "name": "Netto avdrag",
             "expression": [
               "",
               "",
@@ -2986,7 +2888,7 @@
             ]
           },
           {
-            "name": "Helse/Omsorg",
+            "name": "Helse/omsorg",
             "expression": [
               "",
               "",
@@ -3085,7 +2987,7 @@
             ]
           },
           {
-            "name": "Admin",
+            "name": "Administrasjon",
             "expression": [
               "",
               "",
@@ -3280,7 +3182,7 @@
             ]
           },
           {
-            "name": "Eiendomskatt totalt (prosentvis vekst)",
+            "name": "Eiendomsskatt totalt (prosentvis vekst)",
             "expression": [
               "",
               "",
@@ -3446,7 +3348,7 @@
             ]
           },
           {
-            "name": "Netto Driftsresultat (1000 kr)",
+            "name": "Netto driftsresultat (1000 kr)",
             "expression": [
               "",
               "",
@@ -3456,7 +3358,7 @@
             ]
           },
           {
-            "name": "Avsetning til bundne fond (netto)",
+            "name": "Avsetning til bundne fond (netto) (1000 kr)",
             "expression": [
               "",
               "",
@@ -3524,6 +3426,36 @@
               "VAR Resultat = [Rammetilskudd]",
               "",
               "RETURN(ROUND(Resultat, 0))"
+            ]
+          },
+          {
+            "name": "Eiendomskatt totalt (1000 kr)",
+            "expression": [
+              "",
+              "",
+              "VAR Resultat = [Grunntall - Eiendomsskatt totalt - AG10 - 12328/13218]",
+              "",
+              "RETURN(ROUND(Resultat, 0))"
+            ]
+          },
+          {
+            "name": "TEST",
+            "expression": [
+              "",
+              "",
+              "VAR V = CONCATENATEX ('År', [År], \",\")",
+              "",
+              "RETURN(V)"
+            ]
+          },
+          {
+            "name": "TEST2",
+            "expression": [
+              "",
+              "",
+              "VAR V = FIRSTNONBLANK('År'[År], [År])",
+              "",
+              "RETURN(V)"
             ]
           }
         ]
