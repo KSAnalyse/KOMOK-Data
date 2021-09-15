@@ -1764,7 +1764,7 @@
               "",
               "",
               "",
-              "VAR HarBlanke = ISBLANK([Grunntall - Langsiktig gjeld ekskl. pensjonsforpliktelser - KG32 - 12364]) || ",
+              "VAR HarBlanke = ISBLANK([Langsiktig gjeld ekskl. pensjonsforpliktelser - manuelt]) || ",
               "                ISBLANK([Grunntall - Renteeksponert gjeld - KG39 - 12364])",
               "",
               "VAR KG39 = ",
