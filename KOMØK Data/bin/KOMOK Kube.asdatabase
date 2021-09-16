@@ -1765,7 +1765,7 @@
               "",
               "",
               "",
-              "VAR HarBlanke = ISBLANK([Grunntall - Langsiktig gjeld ekskl. pensjonsforpliktelser - KG32 - 12364]) || ",
+              "VAR HarBlanke = ISBLANK([Langsiktig gjeld ekskl. pensjonsforpliktelser - manuelt]) || ",
               "                ISBLANK([Grunntall - Renteeksponert gjeld - KG39 - 12364])",
               "",
               "VAR KG39 = ",
@@ -2106,7 +2106,7 @@
               "    - AGD91",
               "    - DIM530orAD530",
               "",
-              "VAR DelTo = [Avskrivninger minus avdrag (1000 kr)] ",
+              "VAR DelTo = [Avskrivninger minus avdrag (Mill kr)] ",
               "            + [Grunntall - AG29 - 12328/13292] + [Grunntall - AG30 - 12328] ",
               "            + [Grunntall - AG32 - 12328/13292] + [Grunntall - AG33 - 12328/13292]",
               "",
@@ -2352,7 +2352,7 @@
             ]
           },
           {
-            "name": "Avskrivninger minus avdrag (1000 kr)",
+            "name": "Avskrivninger minus avdrag (Mill kr)",
             "expression": [
               "",
               "",
@@ -2396,7 +2396,7 @@
               "        NyResultat",
               "    )",
               "",
-              "RETURN(ROUND(Resultat, 1))"
+              "RETURN(ROUND(DIVIDE(Resultat, 1000), 1))"
             ]
           },
           {
@@ -2431,7 +2431,7 @@
             ]
           },
           {
-            "name": "Handlingsrom (justert netto driftsresultat av driftsinntekter) (1 000 kr)",
+            "name": "Handlingsrom (justert netto driftsresultat av driftsinntekter) (Mill. kr)",
             "expression": [
               "",
               "",
@@ -2482,7 +2482,7 @@
               "    - AGD91",
               "    - DIM530orAD530",
               "",
-              "VAR DelTo = [Avskrivninger minus avdrag (1000 kr)] ",
+              "VAR DelTo = [Avskrivninger minus avdrag (Mill kr)] ",
               "            + [Grunntall - AG29 - 12328/13292] + [Grunntall - AG30 - 12328] ",
               "            + [Grunntall - AG32 - 12328/13292] + [Grunntall - AG33 - 12328/13292]",
               "",
@@ -2499,7 +2499,7 @@
               "    )",
               "",
               "RETURN(",
-              "    ROUND(Resultat, 1)",
+              "    ROUND(DIVIDE(Resultat, 1000), 1)",
               ")"
             ]
           },
@@ -2776,7 +2776,7 @@
               "",
               "RETURN(",
               "    ROUND(",
-              "        [Grunntall - Custom AGD22/ Original AGD85 - 12328/13292], 1",
+              "        Resultat, 1",
               "    )",
               ")"
             ]
@@ -3193,14 +3193,14 @@
             ]
           },
           {
-            "name": "Utgifter til lønn (1000 kr)",
+            "name": "Utgifter til lønn (Mill kr)",
             "expression": [
               "",
               "",
               "VAR AG15 = [Grunntall - Lønnsutgifter og oppgavepliktige godtgjørelser - AG15 - 12328/13292]",
               "    ",
               "",
-              "RETURN(ROUND(AG15, 0))"
+              "RETURN(ROUND(DIVIDE(AG15, 1000), 0))"
             ]
           },
           {
@@ -3226,13 +3226,13 @@
             ]
           },
           {
-            "name": "Sosiale utgifter (1000 kr)",
+            "name": "Sosiale utgifter (Mill. kr)",
             "expression": [
               "",
               "",
               "VAR Resultat = [Grunntall - Sosiale utgifter - AG35 - 12328/13292]",
               "",
-              "RETURN(ROUND(Resultat, 0))"
+              "RETURN(ROUND(DIVIDE(Resultat, 1000), 0))"
             ]
           },
           {
@@ -3258,14 +3258,14 @@
             ]
           },
           {
-            "name": "Lønn inkl. sosiale utgifter (1000 kr)",
+            "name": "Lønn inkl. sosiale utgifter (Mill. kr)",
             "expression": [
               "",
               "",
               "VAR Resultat = [Grunntall - Lønnsutgifter og oppgavepliktige godtgjørelser - AG15 - 12328/13292]",
               "                        + [Grunntall - Sosiale utgifter - AG35 - 12328/13292]",
               "",
-              "RETURN(ROUND(Resultat, 0))"
+              "RETURN(ROUND(DIVIDE(Resultat, 1000), 0))"
             ]
           },
           {
@@ -3293,23 +3293,23 @@
             ]
           },
           {
-            "name": "Netto driftsresultat (1000 kr)",
+            "name": "Netto driftsresultat (Mill kr)",
             "expression": [
               "",
               "",
               "VAR Resultat = [Grunntall - Netto Driftsresultat - AGD23 - 12364]",
               "",
-              "RETURN(ROUND(Resultat, 0))"
+              "RETURN(ROUND(DIVIDE(Resultat, 1000), 1))"
             ]
           },
           {
-            "name": "Avsetning til bundne fond (netto) (1000 kr)",
+            "name": "Avsetning til bundne fond (netto) (Mill kr)",
             "expression": [
               "",
               "",
               "VAR Resultat = [Grunntall - Avsetning til bundne fond (netto) - AGD74 - 12364]",
               "",
-              "RETURN(ROUND(Resultat, 0))"
+              "RETURN(ROUND(DIVIDE(Resultat, 1000), 1))"
             ]
           },
           {
@@ -3354,33 +3354,33 @@
             ]
           },
           {
-            "name": "Skatt (1000 kr)",
+            "name": "Skatt (Mill. kr)",
             "expression": [
               "",
               "",
               "VAR Resultat = [Skatt]",
               "",
-              "RETURN(ROUND(Resultat, 0))"
+              "RETURN(ROUND(DIVIDE(Resultat, 1000), 0))"
             ]
           },
           {
-            "name": "Rammetilskudd (1000 kr)",
+            "name": "Rammetilskudd (Mill. kr)",
             "expression": [
               "",
               "",
               "VAR Resultat = [Rammetilskudd]",
               "",
-              "RETURN(ROUND(Resultat, 0))"
+              "RETURN(ROUND(DIVIDE(Resultat, 1000), 0))"
             ]
           },
           {
-            "name": "Eiendomskatt totalt (1000 kr)",
+            "name": "Eiendomskatt totalt (Mill kr)",
             "expression": [
               "",
               "",
               "VAR Resultat = [Grunntall - Eiendomsskatt totalt - AG10 - 12328/13292]",
               "",
-              "RETURN(ROUND(Resultat, 0))"
+              "RETURN(ROUND(DIVIDE(Resultat, 1000), 0))"
             ]
           },
           {
@@ -3702,6 +3702,54 @@
               "",
               "",
               ""
+            ]
+          },
+          {
+            "name": "Avskrivninger minus avdrag (1000 kr)",
+            "expression": [
+              "",
+              "",
+              "VAR ValgtAar = VALUE(SELECTEDVALUE('År'[År]))",
+              "",
+              "VAR AG5 = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] IN {\"12328\", \"13292\"}),",
+              "        FILTER(ALL(Art[Original dimensjonskode]), [Original dimensjonskode] = \"AG5\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
+              "    )",
+              "",
+              "VAR AG6 = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"12328\"),",
+              "        FILTER(ALL(Art[Original dimensjonskode]), [Original dimensjonskode] = \"AG6\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
+              "    )",
+              "",
+              "VAR AD990orAGD87 = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] IN {\"12328\", \"13292\"}),",
+              "        FILTER(ALL(Art[Original dimensjonskode]), [Original dimensjonskode] IN {\"AD990\", \"AGD87\"}),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
+              "    )",
+              "",
+              "VAR AG13 = ",
+              "    CALCULATE(SUM('Alle Data'[Verdi]),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"12328\"),",
+              "        FILTER(ALL(Art[Original dimensjonskode]), [Original dimensjonskode] = \"AG13\"),",
+              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
+              "    )",
+              "",
+              "VAR GammelResultat = AG5 - [Grunntall - Avskrivninger - A590 - 12328/13292] + (AG6 - AG13) ",
+              "",
+              "VAR NyResultat = AG5 - [Grunntall - Avskrivninger - A590 - 12328/13292]",
+              "",
+              "VAR Resultat = ",
+              "    IF(ValgtAar < 2020,",
+              "        GammelResultat,",
+              "        NyResultat",
+              "    )",
+              "",
+              "RETURN(ROUND(Resultat, 0))"
             ]
           }
         ]
