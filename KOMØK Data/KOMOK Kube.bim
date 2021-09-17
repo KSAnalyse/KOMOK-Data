@@ -1616,7 +1616,7 @@
         ],
         "measures": [
           {
-            "name": "Netto driftsresultat i prosent av brutto driftsinntekter",
+            "name": "+Netto driftsresultat (pst)",
             "expression": [
               "",
               "",
@@ -2054,7 +2054,7 @@
             ]
           },
           {
-            "name": "Handlingsrom (justert netto driftsresultat i prosent av driftsinntekter)",
+            "name": "Handlingsrom (justert netto driftsresultat) (pst)",
             "expression": [
               "",
               "",
@@ -2105,7 +2105,7 @@
               "    - AGD91",
               "    - DIM530orAD530",
               "",
-              "VAR DelTo = [Avskrivninger minus avdrag (Mill kr)] ",
+              "VAR DelTo = [Avskrivninger minus avdrag (1000 kr)] ",
               "            + [Grunntall - AG29 - 12328/13292] + [Grunntall - AG30 - 12328] ",
               "            + [Grunntall - AG32 - 12328/13292] + [Grunntall - AG33 - 12328/13292]",
               "",
@@ -2351,7 +2351,7 @@
             ]
           },
           {
-            "name": "Avskrivninger minus avdrag (Mill kr)",
+            "name": "-Avskrivninger minus avdrag",
             "expression": [
               "",
               "",
@@ -2409,7 +2409,7 @@
             ]
           },
           {
-            "name": "Avsetning til bundne fond i prosent av brutto driftsinntekter",
+            "name": "-Netto avsetning til bundne driftsfond (pst)",
             "expression": [
               "",
               "",
@@ -2420,7 +2420,7 @@
             ]
           },
           {
-            "name": "Avskrivninger minus avdrag i prosent av brutto driftsinntekter",
+            "name": "-Avskrivninger minus avdrag (pst)",
             "expression": [
               "",
               "",
@@ -2430,7 +2430,7 @@
             ]
           },
           {
-            "name": "Handlingsrom (justert netto driftsresultat av driftsinntekter) (Mill. kr)",
+            "name": "Handlingsrom (justert netto driftsresultat)",
             "expression": [
               "",
               "",
@@ -2481,7 +2481,7 @@
               "    - AGD91",
               "    - DIM530orAD530",
               "",
-              "VAR DelTo = [Avskrivninger minus avdrag (Mill kr)] ",
+              "VAR DelTo = [Avskrivninger minus avdrag (1000 kr)] ",
               "            + [Grunntall - AG29 - 12328/13292] + [Grunntall - AG30 - 12328] ",
               "            + [Grunntall - AG32 - 12328/13292] + [Grunntall - AG33 - 12328/13292]",
               "",
@@ -2503,7 +2503,7 @@
             ]
           },
           {
-            "name": "Renteinntekt",
+            "name": "Renteinntekter",
             "expression": [
               "",
               "",
@@ -2559,7 +2559,7 @@
             ]
           },
           {
-            "name": "Utbytte",
+            "name": "+Utbytte",
             "expression": [
               "",
               "",
@@ -2596,7 +2596,7 @@
             ]
           },
           {
-            "name": "Gevinst - Tap",
+            "name": "+Netto gevinst (+) fin. omløåsm.",
             "expression": [
               "",
               "",
@@ -2643,7 +2643,7 @@
             ]
           },
           {
-            "name": "Renteutgifter",
+            "name": "-Renteutgifter",
             "expression": [
               "",
               "",
@@ -2694,7 +2694,7 @@
             ]
           },
           {
-            "name": "Netto avdrag",
+            "name": "-Netto avdrag",
             "expression": [
               "",
               "",
@@ -3082,7 +3082,7 @@
             ]
           },
           {
-            "name": "Skatt (prosentvis vekst)",
+            "name": "Skatt i alt (pst)",
             "expression": [
               "",
               "",
@@ -3104,7 +3104,7 @@
             ]
           },
           {
-            "name": "Skatt på inntekt og formue/inntekts- og formueskatt (prosentvis vekst)",
+            "name": "Inntekts- og formueskatt (pst)",
             "expression": [
               "",
               "",
@@ -3126,7 +3126,7 @@
             ]
           },
           {
-            "name": "Eiendomsskatt totalt (prosentvis vekst)",
+            "name": "Eiendomsskatt (pst)",
             "expression": [
               "",
               "",
@@ -3148,7 +3148,7 @@
             ]
           },
           {
-            "name": "Rammetilskudd (prosentvis vekst)",
+            "name": "Rammetilskudd (pst)",
             "expression": [
               "",
               "",
@@ -3192,7 +3192,7 @@
             ]
           },
           {
-            "name": "Utgifter til lønn (Mill kr)",
+            "name": "Lønnsutgifter",
             "expression": [
               "",
               "",
@@ -3203,7 +3203,7 @@
             ]
           },
           {
-            "name": "Utgifter til lønn (prosentvis vekst)",
+            "name": "Lønnsutgifter (pst)",
             "expression": [
               "",
               "",
@@ -3225,7 +3225,7 @@
             ]
           },
           {
-            "name": "Sosiale utgifter (Mill. kr)",
+            "name": "Sosiale utgifter",
             "expression": [
               "",
               "",
@@ -3235,7 +3235,7 @@
             ]
           },
           {
-            "name": "Sosiale utgifter (prosentvis vekst)",
+            "name": "Sosiale utgifter (pst)",
             "expression": [
               "",
               "",
@@ -3257,7 +3257,7 @@
             ]
           },
           {
-            "name": "Lønn inkl. sosiale utgifter (Mill. kr)",
+            "name": "Sum lønn inkl. sosiale utgifter",
             "expression": [
               "",
               "",
@@ -3268,7 +3268,7 @@
             ]
           },
           {
-            "name": "Lønn inkl. sosiale utgifter (prosentvis vekst)",
+            "name": "Sum lønn inkl. sosiale utgifter (pst)",
             "expression": [
               "",
               "",
@@ -3292,21 +3292,11 @@
             ]
           },
           {
-            "name": "Netto driftsresultat (Mill kr)",
+            "name": "+Netto driftsresultat",
             "expression": [
               "",
               "",
               "VAR Resultat = [Grunntall - Netto Driftsresultat - AGD23 - 12364]",
-              "",
-              "RETURN(ROUND(DIVIDE(Resultat, 1000), 1))"
-            ]
-          },
-          {
-            "name": "Avsetning til bundne fond (netto) (Mill kr)",
-            "expression": [
-              "",
-              "",
-              "VAR Resultat = [Grunntall - Avsetning til bundne fond (netto) - AGD74 - 12364]",
               "",
               "RETURN(ROUND(DIVIDE(Resultat, 1000), 1))"
             ]
@@ -3342,7 +3332,7 @@
             ]
           },
           {
-            "name": "Dekning tidligere års merforbruk (prosentvis vekst)",
+            "name": "-Dekning tidligere års merforbruk (pst)",
             "expression": [
               "",
               "",
@@ -3353,7 +3343,7 @@
             ]
           },
           {
-            "name": "Skatt (Mill. kr)",
+            "name": "Skatt i alt",
             "expression": [
               "",
               "",
@@ -3363,7 +3353,7 @@
             ]
           },
           {
-            "name": "Rammetilskudd (Mill. kr)",
+            "name": "Rammetilskudd.",
             "expression": [
               "",
               "",
@@ -3373,7 +3363,7 @@
             ]
           },
           {
-            "name": "Eiendomskatt totalt (Mill kr)",
+            "name": "Eiendomskatt",
             "expression": [
               "",
               "",
@@ -3403,130 +3393,49 @@
             ]
           },
           {
-            "name": "Handlingsrom (justert netto driftsresultat i prosent av driftsinntekter) - TEST",
+            "name": "Frie inntekter i alt (pst)",
             "expression": [
               "",
               "",
               "VAR ValgtAar = VALUE(SELECTEDVALUE('År'[År]))",
               "",
-              "VAR AGD66orAGD89 = ",
-              "    CALCULATE(SUM('Alle Data'[Verdi]),",
-              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] IN {\"12328\", \"13292\"}),",
-              "        FILTER(ALL(Art[Original dimensjonskode]), [Original dimensjonskode] IN {\"AGD66\", \"AGD89\"}),",
-              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
+              "VAR FrieInntekter = [Grunntall - Rammetilskudd - A800 - 12328/13292] ",
+              "               + [Grunntall - Skatt på inntekt og formue/Inntekts- og formueskatt - A870/AGD75 - 12328/13292]",
+              "               + [Grunntall - Eiendomsskatt totalt - AG10 - 12328/13292]",
+              "               + [Grunntall - Andre direkte og indirekte skatter/Andre skatteinntekter - 877/AGD76 - 12328/13292]",
+              "",
+              "VAR FrieInntekterEtAarSiden = ",
+              "    CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13292] +",
+              "                [Grunntall - Skatt på inntekt og formue/Inntekts- og formueskatt - A870/AGD75 - 12328/13292]+",
+              "                [Grunntall - Eiendomsskatt totalt - AG10 - 12328/13292]+",
+              "                [Grunntall - Andre direkte og indirekte skatter/Andre skatteinntekter - 877/AGD76 - 12328/13292],",
+              "                FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar, \"####\"))",
+              "    )    ",
+              "",
+              "VAR FrieInntekterToAarSiden = ",
+              "    CALCULATE([Grunntall - Rammetilskudd - A800 - 12328/13292] +",
+              "                [Grunntall - Skatt på inntekt og formue/Inntekts- og formueskatt - A870/AGD75 - 12328/13292]+",
+              "                [Grunntall - Eiendomsskatt totalt - AG10 - 12328/13292]+",
+              "                [Grunntall - Andre direkte og indirekte skatter/Andre skatteinntekter - 877/AGD76 - 12328/13292],",
+              "                FILTER(ALL('År'[År]), [År] = FORMAT(ValgtAar - 1, \"####\"))",
               "    )",
               "",
-              "VAR DIM550 = ",
-              "    CALCULATE(SUM('Alle Data'[Verdi]),",
-              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] IN {\"12328\"}),",
-              "        FILTER(ALL(Art[Original dimensjonskode]), [Original dimensjonskode] = \"550\"),",
-              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
-              "    )",
+              "VAR Resultat = DIVIDE((FrieInntekterEtAarSiden - FrieInntekterToAarSiden) * 100, FrieInntekterToAarSiden)",
               "",
-              "VAR DIM950 = ",
-              "    CALCULATE(SUM('Alle Data'[Verdi]),",
-              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] IN {\"12328\"}),",
-              "        FILTER(ALL(Art[Original dimensjonskode]), [Original dimensjonskode] = \"950\"),",
-              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
-              "    )",
-              "",
-              "VAR AGD91 = ",
-              "    CALCULATE(SUM('Alle Data'[Verdi]),",
-              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] IN {\"13292\"}),",
-              "        FILTER(ALL(Art[Original dimensjonskode]), [Original dimensjonskode] = \"AGD91\"),",
-              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
-              "    )",
-              "",
-              "VAR DIM530orAD530 = ",
-              "    CALCULATE(SUM('Alle Data'[Verdi]),",
-              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] IN {\"12328\", \"13292\"}),",
-              "        FILTER(ALL(Art[Original dimensjonskode]), [Original dimensjonskode] IN {\"530\", \"AD530\"}),",
-              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
-              "    )",
-              "",
-              "VAR GammelDelEn = ",
-              "    AGD66orAGD89",
-              "    - (DIM550 - DIM950)",
-              "    - DIM530orAD530",
-              "",
-              "VAR NyDelEn = ",
-              "    AGD66orAGD89",
-              "    - AGD91",
-              "    - DIM530orAD530",
-              "",
-              "VAR DelTo = [Avskrivninger minus avdrag (1000 kr) - TEST] ",
-              "            + [Grunntall - AG29 - 12328/13292] + [Grunntall - AG30 - 12328] ",
-              "            + [Grunntall - AG32 - 12328/13292] + [Grunntall - AG33 - 12328/13292]",
-              "",
-              "VAR DelTre =",
-              "        [Grunntall - Sum driftsinntekter (A) - AGD45 - 12328/13292]",
-              "        - [Grunntall - AG23 - 12328/13292]",
-              "        + [Grunntall - AG24 - 12328/13292]",
-              "        + [Grunntall - AG25 - 12328/13292]",
-              "        + [Grunntall - AG26 - 12328/13292]",
-              " ",
-              "VAR GammelResultat = DIVIDE((GammelDelEn + DelTo) * 100, DelTre)",
-              "",
-              "VAR NyResultat = DIVIDE((NyDelEn + DelTo) * 100, DelTre)",
-              "   ",
-              "",
-              "VAR Resultat = ",
-              "    IF(ValgtAar < 2020,",
-              "        GammelResultat,",
-              "        NyResultat",
-              "    )",
-              "",
-              "RETURN(",
-              "    ROUND(Resultat, 1)",
-              ")"
+              "RETURN(ROUND(Resultat, 1))"
             ]
           },
           {
-            "name": "Avskrivninger minus avdrag (1000 kr) - TEST",
+            "name": "Frie inntekter i alt",
             "expression": [
               "",
               "",
-              "VAR ValgtAar = VALUE(SELECTEDVALUE('År'[År]))",
+              "VAR Resultat = DIVIDE([Grunntall - Rammetilskudd - A800 - 12328/13292] ",
+              "                        + [Grunntall - Skatt på inntekt og formue/Inntekts- og formueskatt - A870/AGD75 - 12328/13292]",
+              "                        + [Grunntall - Eiendomsskatt totalt - AG10 - 12328/13292]",
+              "                        + [Grunntall - Andre direkte og indirekte skatter/Andre skatteinntekter - 877/AGD76 - 12328/13292], 1000)",
               "",
-              "VAR AG5 = ",
-              "    CALCULATE(SUM('Alle Data'[Verdi]),",
-              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] IN {\"12328\", \"13292\"}),",
-              "        FILTER(ALL(Art[Original dimensjonskode]), [Original dimensjonskode] = \"AG5\"),",
-              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
-              "    )",
-              "",
-              "VAR AG6 = ",
-              "    CALCULATE(SUM('Alle Data'[Verdi]),",
-              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"12328\"),",
-              "        FILTER(ALL(Art[Original dimensjonskode]), [Original dimensjonskode] = \"AG6\"),",
-              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
-              "    )",
-              "",
-              "VAR AD990orAGD87 = ",
-              "    CALCULATE(SUM('Alle Data'[Verdi]),",
-              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] IN {\"12328\", \"13292\"}),",
-              "        FILTER(ALL(Art[Original dimensjonskode]), [Original dimensjonskode] IN {\"AD990\", \"AGD87\"}),",
-              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
-              "    )",
-              "",
-              "VAR AG13 = ",
-              "    CALCULATE(SUM('Alle Data'[Verdi]),",
-              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"12328\"),",
-              "        FILTER(ALL(Art[Original dimensjonskode]), [Original dimensjonskode] = \"AG13\"),",
-              "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
-              "    )",
-              "",
-              "VAR GammelResultat = AG5 - [Grunntall - Avskrivninger - A590 - 12328/13292] + (AG6 - AG13) ",
-              "",
-              "VAR NyResultat = AG5 - [Grunntall - Avskrivninger - A590 - 12328/13292]",
-              "",
-              "VAR Resultat = ",
-              "    IF(ValgtAar < 2020,",
-              "        GammelResultat,",
-              "        NyResultat",
-              "    )",
-              "",
-              "RETURN(ROUND(Resultat, 1))"
+              "RETURN(ROUND(Resultat, 0))"
             ]
           },
           {
@@ -3747,6 +3656,36 @@
               "        GammelResultat,",
               "        NyResultat",
               "    )",
+              "",
+              "RETURN(ROUND(Resultat, 0))"
+            ]
+          },
+          {
+            "name": "-Netto avsetning til bundne driftsfond",
+            "expression": [
+              "",
+              "",
+              "VAR Resultat = [Grunntall - Avsetning til bundne fond (netto) - AGD74 - 12364]",
+              "",
+              "RETURN(ROUND(DIVIDE(Resultat, 1000), 1))"
+            ]
+          },
+          {
+            "name": "-Dekning av tidligere års merforbruk",
+            "expression": [
+              "",
+              "",
+              "VAR Resultat = -[Grunntall - Dekning av tidligere års merforbruk og udekket beløp (K) - 530/AD530 - 12328/13292]",
+              "",
+              "RETURN(ROUND(DIVIDE(Resultat, 1000), 1))"
+            ]
+          },
+          {
+            "name": "Inntekts- og formueskatt",
+            "expression": [
+              "",
+              "",
+              "VAR Resultat = DIVIDE([Grunntall - Skatt på inntekt og formue/Inntekts- og formueskatt - A870/AGD75 - 12328/13292], 1000)",
               "",
               "RETURN(ROUND(Resultat, 0))"
             ]
