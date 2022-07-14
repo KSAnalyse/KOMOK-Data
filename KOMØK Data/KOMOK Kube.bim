@@ -16,10 +16,9 @@
           "authentication": null,
           "query": null
         },
+        "options": {},
         "credential": {
           "AuthenticationKind": "Windows",
-          "kind": "SQL",
-          "path": "vk-sxd0e-002;Reporting_KOMOK",
           "Username": "axel.hjelmervik.hansen@ks.no",
           "EncryptConnection": false
         }
@@ -647,7 +646,7 @@
               "        DifferanseGammelTabell",
               "    )",
               "",
-              "RETURN(Resultat)"
+              "RETURN(DifferanseGammelTabell)"
             ],
             "displayFolder": "Grunntall"
           },
@@ -1208,7 +1207,9 @@
               "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Lønnsvekst\")",
               "    )",
               "",
-              "RETURN(Lonnsvekst)"
+              "RETURN(",
+              "    DIVIDE([Lønnsutgifter], Lonnsvekst)",
+              ")"
             ],
             "displayFolder": "Grunntall"
           },
