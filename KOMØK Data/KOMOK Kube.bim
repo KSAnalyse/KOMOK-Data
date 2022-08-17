@@ -19,6 +19,8 @@
         "options": {},
         "credential": {
           "AuthenticationKind": "Windows",
+          "kind": "SQL",
+          "path": "vk-sxd0e-002;Reporting_KOMOK",
           "Username": "axel.hjelmervik.hansen@ks.no",
           "EncryptConnection": false
         }
@@ -1207,9 +1209,7 @@
               "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Lønnsvekst\")",
               "    )",
               "",
-              "RETURN(",
-              "    DIVIDE([Lønnsutgifter], Lonnsvekst)",
-              ")"
+              "RETURN(Lonnsvekst)"
             ],
             "displayFolder": "Grunntall"
           },
@@ -2032,13 +2032,15 @@
             "expression": [
               "",
               "",
-              "VAR Resultat = ",
+              "var valgte_aar = VALUE(SELECTEDVALUE('År'[År]))",
+              "",
+              "var konsern =",
+              "[Grunntall - AG28 - 12328/13551] + [Grunntall - AG29 - 12328/13551] + [Grunntall - AG31 - 12328/13551]",
+              "    + [Grunntall - AG32 - 12328/13551]",
+              "",
+              "VAR pre2020 = ",
               "    DIVIDE(",
-              "        -([Grunntall - Custom AGD22/ Original AGD85 - 12328/13551]",
-              "            - ([Grunntall - AG28 - 12328/13551]",
-              "                + [Grunntall - AG29 - 12328/13551]",
-              "                + [Grunntall - AG31 - 12328/13551]",
-              "                + [Grunntall - AG32 - 12328/13551])) * 100,",
+              "        -([Grunntall - Custom AGD22/ Original AGD85 - 12328/13551] - konsern) * 100,",
               "        ([Grunntall - Sum driftsinntekter (A) - AGD45 - 12328/13551]",
               "        - [Grunntall - AG23 - 12328/13551]",
               "        - [Grunntall - AG24 - 12328/13551]",
@@ -2047,10 +2049,22 @@
               "        )",
               "    )",
               "",
+              "var post2020 = ",
+              "    DIVIDE(",
+              "        ([Grunntall - Custom AGD22/ Original AGD85 - 12328/13551] - konsern) * 100,",
+              "        ([Grunntall - Sum driftsinntekter (A) - AGD45 - 12328/13551]",
+              "        - [Grunntall - AG23 - 12328/13551]",
+              "        - [Grunntall - AG24 - 12328/13551]",
+              "        - [Grunntall - AG25 - 12328/13551]",
+              "        - [Grunntall - AG26 - 12328/13551]",
+              "        )",
+              ")",
+              "",
+              "var resultat =",
+              "IF(valgte_aar < 2020, pre2020, post2020)",
+              "",
               "RETURN(",
-              "    ROUND(Resultat, 1",
-              "    ",
-              "    )",
+              "    ROUND(resultat, 1)",
               ")"
             ]
           },
