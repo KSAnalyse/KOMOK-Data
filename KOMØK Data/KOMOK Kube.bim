@@ -648,7 +648,7 @@
               "        DifferanseGammelTabell",
               "    )",
               "",
-              "RETURN(DifferanseGammelTabell)"
+              "RETURN(Resultat)"
             ],
             "displayFolder": "Grunntall"
           },
