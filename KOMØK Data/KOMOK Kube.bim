@@ -1674,7 +1674,7 @@
               "",
               "VAR KG14 =",
               "    CALCULATE(SUM('Alle Data'[Verdi]),",
-              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"13202\"),",
+              "        FILTER(ALL(Tabeller[Tabellnummer]), [Tabellnummer] = \"12364\"),",
               "        FILTER(ALL(Balansedata[Original dimensjonskode]), [Original dimensjonskode] = \"KG14\"),",
               "        FILTER(ALL(Variabel[Variabelnavn]), [Variabelnavn] = \"Beløp (1000 kr)\")",
               "    )",
