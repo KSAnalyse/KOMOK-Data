@@ -2010,7 +2010,7 @@
             ]
           },
           {
-            "name": "Netto finanstransaksjoner i prosent av driftsinntekter",
+            "name": "Netto finansutgifter i prosent av driftsinntekter",
             "expression": [
               "",
               "",
@@ -2024,13 +2024,13 @@
               "",
               "VAR pre2020 = ",
               "    DIVIDE(",
-              "        -([Grunntall - Custom AGD22/ Original AGD85 - 12328/13551] - konsern) * 100,",
+              "        ([Grunntall - Custom AGD22/ Original AGD85 - 12328/13551] - konsern) * 100,",
               "        [Korrigerte driftsinntekter - 12328/13551]",
               "    )",
               "",
               "var post2020 = ",
               "    DIVIDE(",
-              "        -(-[Grunntall - Custom AGD22/ Original AGD85 - 12328/13551] - konsern) * 100,",
+              "        (-[Grunntall - Custom AGD22/ Original AGD85 - 12328/13551] - konsern) * 100,",
               "        [Korrigerte driftsinntekter - 12328/13551]",
               "    )",
               "",
