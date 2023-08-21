@@ -3660,7 +3660,7 @@
               "",
               "VAR Resultat = ",
               "    DIVIDE(",
-              "        -[Grunntall - Avskrivninger - A590 - 12328/13551], ",
+              "        [Grunntall - Avskrivninger - A590 - 12328/13551], ",
               "        [Korrigerte driftsinntekter - 12328/13551]",
               "    )",
               "",
